@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<section class="about" id="about">
+
+  <!-- Full-width photo banner -->
+  <!-- To activate: add your banner photo to the project folder, then replace the placeholder below:
+       1. Add banner image file (landscape, at least 1800px wide recommended)
+       2. Change background-image in the inline style to: url('your-banner-filename.jpg')
+       3. Remove or keep the overlay div as desired -->
+  <div class="about-banner" style="background-image: url('kamakura banner.jpg');">
+    <div class="banner-overlay-text">student. creator. explorer.</div>
+    <button class="banner-scroll-btn" aria-label="Scroll to about section">&#8964;</button>
+  </div>
+
+  <!-- Hero: Photo + Intro -->
+  <div class="about-section facts-hero-section">
+    <div class="section-content">
+      <div class="facts-hero-grid">
+
+        <!-- Floating symbols left of polaroid -->
+        <div class="hero-left-symbols" aria-hidden="true">
+          <span class="hero-sym hero-sym-amp">&amp;</span>
+          <span class="hero-sym hero-sym-hash">#</span>
+          <span class="hero-sym hero-sym-at">@</span>
+        </div>
+
+        <div class="hero-photo-column">
+          <span class="polaroid-sym polaroid-sym-tr" aria-hidden="true">&lt;&gt;</span>
+          <img src="me at times square.jpg" alt="Shannon at Times Square" class="hero-photo" width="1536" height="2048" loading="lazy">
+          <span class="polaroid-sym polaroid-sym-bl" aria-hidden="true">*</span>
+          <p class="polaroid-caption">Times Square,<br>New York ☆</p>
+          <div class="polaroid-fact-card">
+            <p class="fact-date">090807</p>
+            <p class="fact-location">bay area, ca.</p>
+          </div>
+        </div>
+
+        <div class="hero-text-column">
+          <span class="sparkle sparkle-1">✦</span>
+          <span class="sparkle sparkle-2">✦</span>
+          <span class="sparkle sparkle-3">✦</span>
+          <p class="about-intro-header">all about:</p>
+          <h3 class="about-name">shannon yiheng xiao (肖)</h3>
+          <p class="about-tagline">data science · berkeley · co'29</p>
+          <div class="about-intro-text">
+            <p>Hi! My name is Shannon, an undergrad student at UC Berkeley interested in topics relevant to consumer products, technology, and finance.</p>
+            <p>Growing up, I worked a part time job in the food &amp; beverage industry, which naturally led me to become interested in how products can be designed to provide comfort, usage, and benefit to user groups. This job has also given rise to my interest in other areas of study, such as business operations, finance, and hospitality services.</p>
+            <p>In my free time, I enjoy exploring creative activities including illustration, music, and photography.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Education + Courses -->
+  <div class="about-section education-section">
+    <div class="section-content">
+      <div class="two-column-grid">
+        <div class="column">
+          <div>
+            <h4 class="about-label">based in</h4>
+            <p>> bay area &amp; berkeley</p>
+          </div>
+          <div class="about-subsection">
+            <h4 class="about-label"><a href="https://www.berkeley.edu/">education</a></h4>
+            <p>> currently studying at the university of california - berkeley</p>
+            <p>> intending to major in data science, analytics b.a. co'29</p>
+          </div>
+        </div>
+        <div class="column">
+          <h4 class="about-label">relevant courses</h4>
+          <p>> linear algebra &amp; differential equations, multivariable calculus*</p>
+          <p>> foundations of data science*, computational structures in data science, advanced programming in r*</p>
+          <p>> introduction to economics*</p>
+          <p>* indicates ip (in progress)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Languages + Software -->
+  <div class="about-section about-skills-section">
+    <div class="section-content">
+      <div class="two-column-grid">
+
+        <!-- Languages + Currently -->
+        <div class="column">
+          <h4 class="about-label">languages</h4>
+          <div class="language-list">
+            <div class="language-item">
+              <span class="language-name">English</span>
+              <span class="language-level">Native</span>
+            </div>
+            <div class="language-item">
+              <span class="language-name">Chinese</span>
+              <span class="language-level">Professional</span>
+            </div>
+            <div class="language-item">
+              <span class="language-name">Spanish</span>
+              <span class="language-level">Elementary</span>
+            </div>
+          </div>
+
+          <div class="about-subsection">
+            <h4 class="about-label">local time</h4>
+            <div class="local-time-display">
+              <div class="local-time-row">
+                <span class="local-time-who">mine</span>
+                <span id="shannon-time" class="local-time-value">—</span>
+              </div>
+              <div class="local-time-row">
+                <span class="local-time-who">yours</span>
+                <span id="user-time" class="local-time-value">—</span>
+                <span id="time-diff" class="local-time-diff"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <h4 class="about-label">software/tools</h4>
+          <div class="software-list">
+
+            <div class="software-item">
+              <img src="about me icons/about me canva.png" class="sw-badge-img" alt="Canva">
+              <span class="software-item-name">Canva</span>
+              <div class="software-dots">
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+              </div>
+            </div>
+
+            <div class="software-item">
+              <img src="about me icons/about me excel.png" class="sw-badge-img" alt="Excel">
+              <span class="software-item-name">Excel</span>
+              <div class="software-dots">
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+              </div>
+            </div>
+
+            <div class="software-item">
+              <img src="about me icons/about me ppt.png" class="sw-badge-img" alt="PowerPoint">
+              <span class="software-item-name">PowerPoint</span>
+              <div class="software-dots">
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+              </div>
+            </div>
+
+            <div class="software-item">
+              <img src="about me icons/about me vs code.png" class="sw-badge-img" alt="VS Code">
+              <span class="software-item-name">VS Code</span>
+              <div class="software-dots">
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot"></span>
+              </div>
+            </div>
+
+            <div class="software-item">
+              <img src="about me icons/about me figma.png" class="sw-badge-img" alt="Figma">
+              <span class="software-item-name">Figma</span>
+              <div class="software-dots">
+                <span class="software-dot filled"></span>
+                <span class="software-dot filled"></span>
+                <span class="software-dot"></span>
+                <span class="software-dot"></span>
+                <span class="software-dot"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Interests -->
+  <div class="about-section interests-section">
+    <div class="section-content">
+      <h4 class="about-label">interests</h4>
+      <div class="interest-tags">
+        <span class="interest-tag">the arts</span>
+        <span class="interest-tag">badminton</span>
+        <span class="interest-tag">baking (basque cheesecakes)</span>
+        <span class="interest-tag">card games (斗地主)</span>
+        <span class="interest-tag">flute</span>
+        <span class="interest-tag">illustration</span>
+        <span class="interest-tag">photography (sx-230)</span>
+        <span class="interest-tag">snowboarding</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  // Updates Shannon's local time (America/Los_Angeles) and the visitor's local time every second.
+  // Diff is calculated by comparing UTC offsets of each timezone so half-hour zones (e.g. India +5:30) work correctly.
+
+  function getUTCOffsetHours(timeZone) {
+    const now = new Date();
+    const utc  = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const tz   = new Date(now.toLocaleString('en-US', { timeZone }));
+    return (tz - utc) / (1000 * 60 * 60);
+  }
+
+  function formatDiff(diffHours) {
+    if (diffHours === 0) return 'same timezone';
+    const sign = diffHours > 0 ? '+' : '−';
+    const abs  = Math.abs(diffHours);
+    const h    = Math.floor(abs);
+    const m    = Math.round((abs - h) * 60);
+    const mStr = m > 0 ? `:${String(m).padStart(2, '0')}` : '';
+    return `${sign}${h}${mStr}h`;
+  }
+
+  function updateTime() {
+    const now = new Date();
+
+    // Shannon's time — always America/Los_Angeles (handles PST/PDT automatically)
+    const shannonStr = now.toLocaleTimeString('en-US', {
+      timeZone: 'America/Los_Angeles',
+      hour:     '2-digit',
+      minute:   '2-digit',
+      hour12:   true
+    });
+    const shannonTZ = new Intl.DateTimeFormat('en-US', {
+      timeZone:     'America/Los_Angeles',
+      timeZoneName: 'short'
+    }).formatToParts(now).find(p => p.type === 'timeZoneName').value;
+
+    // Visitor's local time
+    const userStr = now.toLocaleTimeString('en-US', {
+      hour:   '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+    const userTZ = new Intl.DateTimeFormat('en-US', {
+      timeZoneName: 'short'
+    }).formatToParts(now).find(p => p.type === 'timeZoneName').value;
+
+    // Hour difference (positive = visitor is ahead of Shannon)
+    const userZone    = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const diffHours   = getUTCOffsetHours(userZone) - getUTCOffsetHours('America/Los_Angeles');
+
+    document.getElementById('shannon-time').textContent = `${shannonStr} ${shannonTZ}`;
+    document.getElementById('user-time').textContent    = `${userStr} ${userTZ}`;
+    document.getElementById('time-diff').textContent    = formatDiff(diffHours);
+  }
+
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+
+<script>
+  document.querySelector('.banner-scroll-btn').addEventListener('click', function () {
+    var hero = document.querySelector('.facts-hero-section');
+    if (!hero) return;
+    var startY  = window.scrollY;
+    var targetY = hero.getBoundingClientRect().top + startY;
+    var duration = 1100;
+    var start = null;
+
+    function ease(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      window.scrollTo(0, startY + (targetY - startY) * ease(progress));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  
+  <!-- Preload critical images -->
+  <link rel="preload" href="RECEIPT.png" as="image">
+  <link rel="preload" href="LOGO.png" as="image">
+  
+  <!-- Google Fonts: Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a href="index.html" class="logo">shannonxyh─☆</a>
+    <div class="nav-links">
+      <a href="index.html" class="home-icon">🧾</a>
+      <a href="about.html">about,</a>
+      <a href="folio.html">folio,</a>
+      <div class="dropdown">
+        <a href="projects.html" class="dropdown-toggle">projects,</a>
+        <div class="dropdown-menu">
+          <a href="projects.html#client">client</a>
+          <a href="projects.html#research">research</a>
+          <a href="projects.html#other">other</a>
+        </div>
+      </div>
+      <a href="contact.html">contact.</a>
+    </div>
+  </div>
+
+
+  <!-- Hero / Home -->
+  <section class="hero" id="home">
+    <div class="image-container loading">
+      <img src="RECEIPT.png" alt="Home Image" id="receipt-image" width="4320" height="5760">
+      <div class="overlay-text">
+        <p class="center-align">Address: University of California, Berkeley</p>
+        <p class="center-align">Tel: xxx-xxx-2029</p>
+        <p class="center-align">www.shannonxyh.com</p>
+        <p class="center-align">-------------------------------------------------------------------------</p>
+        <p class="left-align">Order #2007</p>
+        <p class="left-align">Saturday, September 8</p>
+        <p class="center-align">-------------------------------------------------------------------------</p>
+        
+        <p class="left-align receipt-item">
+          <span class="item-name">1. about</span>
+          <a href="about.html" class="item-price">00.00</a>
+        </p>
+        <p class="left-align receipt-item">
+          <span class="item-name">2. folio</span>
+          <a href="folio.html" class="item-price">00.00</a>
+        </p>
+        <p class="left-align receipt-item">
+          <span class="item-name">3. projects</span>
+          <a href="projects.html" class="item-price">00.00</a>
+        </p>
+        <p class="left-align receipt-item">
+          <span class="item-name">4. contact</span>
+          <a href="contact.html" class="item-price">00.00</a>
+        </p>
+        <div class="logo-container">
+          <img src="LOGO.png" alt="Logo" class="receipt-logo" width="500" height="500">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

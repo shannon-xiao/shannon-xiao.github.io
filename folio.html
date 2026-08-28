@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao — folio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── Folder landing ── */
+    .folio-landing {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      padding: 100px 40px 60px;
+      box-sizing: border-box;
+    }
+
+    .folio-folder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .folio-folder img {
+      width: 120px;
+      height: auto;
+      transition: transform 0.22s ease, opacity 0.18s ease;
+      display: block;
+    }
+
+    .folio-folder:hover img {
+      transform: translateY(-10px);
+    }
+
+    .folio-folder-label {
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #3b3b3b;
+      text-transform: lowercase;
+      margin-top: -30px;
+    }
+
+    .folio-folder:hover .folio-folder-label {
+      color: #386adf;
+    }
+  </style>
+</head>
+<body>
+
+<div id="folio-content">
+
+  <div class="navbar">
+    <a href="index.html" class="logo">shannonxyh─☆</a>
+    <div class="nav-links">
+      <a href="index.html" class="home-icon">🧾</a>
+      <a href="about.html">about,</a>
+      <a href="folio.html">folio,</a>
+      <div class="dropdown">
+        <a href="projects.html" class="dropdown-toggle">projects,</a>
+        <div class="dropdown-menu">
+          <a href="projects.html#client">client</a>
+          <a href="projects.html#research">research</a>
+          <a href="projects.html#other">other</a>
+        </div>
+      </div>
+      <a href="contact.html">contact.</a>
+    </div>
+  </div>
+
+  <div class="folio-landing">
+
+    <a class="folio-folder" href="folio-illustration.html">
+      <img
+        src="website-folder-icon.png"
+        alt="illustration folder"
+        data-default="website-folder-icon.png"
+        data-hover="website-folder-icon-2.png"
+      >
+      <span class="folio-folder-label">illustration</span>
+    </a>
+
+    <a class="folio-folder" href="folio-photography.html">
+      <img
+        src="website-folder-icon.png"
+        alt="photography folder"
+        data-default="website-folder-icon.png"
+        data-hover="website-folder-icon-2.png"
+      >
+      <span class="folio-folder-label">photography</span>
+    </a>
+
+    <a class="folio-folder" href="folio-other.html">
+      <img
+        src="website-folder-icon.png"
+        alt="other folder"
+        data-default="website-folder-icon.png"
+        data-hover="website-folder-icon-2.png"
+      >
+      <span class="folio-folder-label">other</span>
+    </a>
+
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+  /* ── Folder icon swap on hover ── */
+  document.querySelectorAll('.folio-folder img').forEach(function (img) {
+    img.addEventListener('mouseenter', function () {
+      img.src = img.dataset.hover;
+    });
+    img.addEventListener('mouseleave', function () {
+      img.src = img.dataset.default;
+    });
+  });
+</script>
+
+</body>
+</html>

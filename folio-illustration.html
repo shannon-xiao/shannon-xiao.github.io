@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao — illustration</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Lightbox -->
+<div id="folio-lightbox" role="dialog" aria-modal="true">
+  <button id="folio-lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-text">
+    <h4 id="lightbox-title"></h4>
+    <p id="lightbox-caption"></p>
+    <p id="lightbox-notes"></p>
+  </div>
+</div>
+
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <a href="folio.html">folio,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<section class="folio" id="illustration">
+
+  <h2>illustration</h2>
+  <p class="folio-section-desc">
+    Growing up, I was put into art classes from a young age (and although a 5 year old at the time wouldn't be the one making choices), I now find illustration to be one of my hobbies I've dedicated a lot of effort towards. I've self taught myself digital illustration, which I focus on the most now due to it being convenient.
+  </p>
+
+  <p style="font-size:12px; color:#bbb; letter-spacing:0.4px; margin-top:-8px; margin-bottom:20px; font-style:italic;">more works to be uploaded...</p>
+
+  <div class="folio-row">
+    <div class="folio-item"
+         data-title="Mango"
+         data-caption=""
+         data-notes="">
+      <img src="illustration images/mango illust 1.jpg" alt="Mango">
+      <span class="folio-item-caption">Mango</span>
+    </div>
+  </div>
+
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ── Lightbox ── */
+  (function () {
+    var box     = document.getElementById('folio-lightbox');
+    var img     = document.getElementById('lightbox-img');
+    var title   = document.getElementById('lightbox-title');
+    var caption = document.getElementById('lightbox-caption');
+    var notes   = document.getElementById('lightbox-notes');
+    var close   = document.getElementById('folio-lightbox-close');
+
+    function openLightbox(item) {
+      img.src             = item.querySelector('img').src;
+      img.alt             = item.dataset.title || '';
+      title.textContent   = item.dataset.title   || '';
+      caption.textContent = item.dataset.caption || '';
+      notes.textContent   = item.dataset.notes   || '';
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    document.querySelectorAll('.folio-item:not(.folio-placeholder)').forEach(function (item) {
+      item.addEventListener('click', function () { openLightbox(item); });
+    });
+
+    close.addEventListener('click', closeLightbox);
+    box.addEventListener('click', function (e) { if (e.target === box) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  })();
+</script>
+
+</body>
+</html>

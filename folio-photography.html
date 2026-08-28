@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao — photography</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .folio-item {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: folioFadeIn 0.6s ease forwards;
+    }
+    @keyframes folioFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Lightbox -->
+<div id="folio-lightbox" role="dialog" aria-modal="true">
+  <button id="folio-lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-text">
+    <h4 id="lightbox-title"></h4>
+    <p id="lightbox-caption"></p>
+    <p id="lightbox-notes"></p>
+  </div>
+</div>
+
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <a href="folio.html">folio,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<section class="folio" id="photography">
+
+  <h2>photography</h2>
+  <p class="folio-section-desc">
+    Though not a professional, I enjoy capturing photos in my everyday life — especially when traveling, aiming to preserve each moment. I shoot with my phone and a Canon PowerShot SX230.
+  </p>
+
+  <div class="folio-row">
+    <div class="folio-item"
+         data-title="Yufuin, Kyushu"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Yufuin, Kyushu.JPG" alt="Yufuin, Kyushu">
+      <span class="folio-item-caption">Yufuin, Kyushu</span>
+    </div>
+    <div class="folio-item"
+         data-title="Kamakura, Japan"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Kamakura, Japan.JPG" alt="Kamakura, Japan">
+      <span class="folio-item-caption">Kamakura, Japan</span>
+    </div>
+    <div class="folio-item"
+         data-title="Beiyu Memory Noodles, Chongqing"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Beiyu Memory Noodles, Chongqing.JPG" alt="Beiyu Memory Noodles, Chongqing">
+      <span class="folio-item-caption">Beiyu Memory Noodles, Chongqing</span>
+    </div>
+    <div class="folio-item"
+         data-title="Beppu, Oita, Kyushu"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Beppu, Oita, Kyushu.JPG" alt="Beppu, Oita, Kyushu">
+      <span class="folio-item-caption">Beppu, Oita, Kyushu</span>
+    </div>
+    <div class="folio-item"
+         data-title="Cornell University, Ithaca"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Cornell University, Ithaca.JPG" alt="Cornell University, Ithaca">
+      <span class="folio-item-caption">Cornell University, Ithaca</span>
+    </div>
+    <div class="folio-item"
+         data-title="Fukuoka, Japan"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Fukuoka, Japan.JPG" alt="Fukuoka, Japan">
+      <span class="folio-item-caption">Fukuoka, Japan</span>
+    </div>
+    <div class="folio-item"
+         data-title="Heavenly Lift View, Lake Tahoe"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Heavenly Lift View, Lake Tahoe.JPG" alt="Heavenly Lift View, Lake Tahoe">
+      <span class="folio-item-caption">Heavenly Lift View, Lake Tahoe</span>
+    </div>
+    <div class="folio-item"
+         data-title="Heavenly, Lake Tahoe"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Heavenly, Lake Tahoe.JPG" alt="Heavenly, Lake Tahoe">
+      <span class="folio-item-caption">Heavenly, Lake Tahoe</span>
+    </div>
+    <div class="folio-item"
+         data-title="Hongyadong, Chongqing"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Hongyadong, Chongqing.JPG" alt="Hongyadong, Chongqing">
+      <span class="folio-item-caption">Hongyadong, Chongqing</span>
+    </div>
+    <div class="folio-item"
+         data-title="Lake Tahoe, 2025"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Lake Tahoe, 2025.JPG" alt="Lake Tahoe, 2025">
+      <span class="folio-item-caption">Lake Tahoe, 2025</span>
+    </div>
+    <div class="folio-item"
+         data-title="Liziba Station, Chongqing"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Liziba Station, Chongqing.JPG" alt="Liziba Station, Chongqing">
+      <span class="folio-item-caption">Liziba Station, Chongqing</span>
+    </div>
+    <div class="folio-item"
+         data-title="Red Panda, Chengdu Research Base of Giant Panda"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Red Panda, Chengdu Research Base of Giant Panda.JPG" alt="Red Panda, Chengdu Research Base of Giant Panda">
+      <span class="folio-item-caption">Red Panda, Chengdu</span>
+    </div>
+    <div class="folio-item"
+         data-title="Shanghai Pearl Tower Observation Deck View"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Shanghai Pearl Tower Observation Deck View.JPG" alt="Shanghai Pearl Tower Observation Deck View">
+      <span class="folio-item-caption">Shanghai Pearl Tower</span>
+    </div>
+    <div class="folio-item"
+         data-title="Stonestown, San Francisco"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Stonestown, San Francisco.JPG" alt="Stonestown, San Francisco">
+      <span class="folio-item-caption">Stonestown, San Francisco</span>
+    </div>
+    <div class="folio-item"
+         data-title="Fushimi Inari, Kyoto, Japan"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Fushimi Inari, Kyoto, Japan.JPG" alt="Fushimi Inari, Kyoto, Japan">
+      <span class="folio-item-caption">Fushimi Inari, Kyoto, Japan</span>
+    </div>
+    <div class="folio-item"
+         data-title="Crosswalk in Snow"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Crosswalk in Snow.png" alt="Crosswalk in Snow">
+      <span class="folio-item-caption">Crosswalk in Snow</span>
+    </div>
+    <div class="folio-item"
+         data-title="Xingfutang Matcha Red Boba"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Xingfutang Matcha Red Boba.JPG" alt="Xingfutang Matcha Red Boba">
+      <span class="folio-item-caption">Xingfutang Matcha Red Boba</span>
+    </div>
+    <div class="folio-item"
+         data-title="Yung Kai Concert, Sept. 2025"
+         data-caption=""
+         data-notes="">
+      <img src="photography-images/Yung Kai Concert, Sept. 2025.JPG" alt="Yung Kai Concert, Sept. 2025">
+      <span class="folio-item-caption">Yung Kai Concert, Sept. 2025</span>
+    </div>
+  </div>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ── Lightbox ── */
+  (function () {
+    var box     = document.getElementById('folio-lightbox');
+    var img     = document.getElementById('lightbox-img');
+    var title   = document.getElementById('lightbox-title');
+    var caption = document.getElementById('lightbox-caption');
+    var notes   = document.getElementById('lightbox-notes');
+    var close   = document.getElementById('folio-lightbox-close');
+
+    function openLightbox(item) {
+      img.src             = item.querySelector('img').src;
+      img.alt             = item.dataset.title || '';
+      title.textContent   = item.dataset.title   || '';
+      caption.textContent = item.dataset.caption || '';
+      notes.textContent   = item.dataset.notes   || '';
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    document.querySelectorAll('.folio-item:not(.folio-placeholder)').forEach(function (item) {
+      item.addEventListener('click', function () { openLightbox(item); });
+    });
+
+    close.addEventListener('click', closeLightbox);
+    box.addEventListener('click', function (e) { if (e.target === box) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao — projects</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      gap: 1.2rem;
+    }
+    #gate p {
+      font-size: 13px;
+      color: #3b3b3b;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    #gate-label {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: -0.4rem;
+    }
+    #gate-input {
+      border: none;
+      border-bottom: 1.5px solid #3b3b3b;
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      padding: 4px 2px;
+      width: 180px;
+      text-align: center;
+      color: #3b3b3b;
+      background: transparent;
+      letter-spacing: 2px;
+    }
+    #gate-input::placeholder { color: #ccc; letter-spacing: 1px; }
+    #gate-error {
+      font-size: 11px;
+      color: #c0392b;
+      letter-spacing: 0.5px;
+      min-height: 14px;
+    }
+    #gate-submit {
+      background: none;
+      border: 1.5px solid #3b3b3b;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 22px;
+      cursor: pointer;
+      color: #3b3b3b;
+      transition: background 0.15s, color 0.15s;
+    }
+    #gate-submit:hover { background: #3b3b3b; color: #fff; }
+    #projects-content { display: none; }
+  </style>
+  <style>
+    .projects {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 40px 80px;
+    }
+
+    .projects-section {
+      margin-bottom: 56px;
+    }
+
+    .projects-section-label {
+      font-family: 'Roboto', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #386adf;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e8ecf4;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border: 1px solid #e8ecf4;
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 20px rgba(56, 106, 223, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .project-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .project-year {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: #888;
+      background: #f5f5f5;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .project-type {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: lowercase;
+      color: #386adf;
+      background: #eef2ff;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .project-type.hackathon {
+      color: #7a4fcf;
+      background: #f3eeff;
+    }
+
+    .project-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #3b3b3b;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    .project-card:hover .project-title {
+      color: #386adf;
+    }
+
+    .project-desc {
+      font-family: 'Roboto', sans-serif;
+      font-size: 12.5px;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding-top: 4px;
+    }
+
+    .project-tag {
+      font-family: monospace;
+      font-size: 10px;
+      color: #3b3b3b;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .projects { padding: 80px 20px 60px; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="gate">
+  <p>under construction.</p>
+  <span id="gate-label">password</span>
+  <input id="gate-input" type="password" placeholder="· · · · · ·" autocomplete="off">
+  <span id="gate-error"></span>
+  <button id="gate-submit">enter</button>
+</div>
+
+<div id="projects-content">
+
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <a href="folio.html">folio,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#work">work</a>
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<section class="projects">
+
+  <!-- Work Experience -->
+  <div class="projects-section" id="work">
+    <p class="projects-section-label">work experience</p>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://www.preqin.com/data/profile/asset/keelinmicro/753169" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2025</span>
+          <span class="project-type">work</span>
+        </div>
+        <span class="project-title">Keelin Micro Electronics — Automotive Startup</span>
+        <p class="project-desc">Business analysis of 4D mmWave LiDAR system architecture (FSD, ADAS). Used R on Federal Reserve datasets to compare FSD stock shares against interest rates and S&P500 using econometrics principles.</p>
+        <div class="project-tags">
+          <span class="project-tag">R</span>
+          <span class="project-tag">econometrics</span>
+          <span class="project-tag">LiDAR</span>
+          <span class="project-tag">ADAS</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/KOL305/GreenGrade" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2024</span>
+          <span class="project-type">work</span>
+        </div>
+        <span class="project-title">Hydrogen Engineering Research Company LLC — GreenGrade</span>
+        <p class="project-desc">Researched the use of a sustainability indicator index with fuzzy logic by compiling and analyzing datasets of ~180 companies (manually vs. automated) to determine companies' sustainability with a holistic SII on a scale of 0 to 1.<br><br>Developed GreenGrade app UI/UX code, incorporating C++/Dart to quantify sustainability by uploading yearly ESG PDFs. Categorized metrics spanning 15 indicators under 5 sectors: water, waste, air, energy, and financial.</p>
+        <div class="project-tags">
+          <span class="project-tag">fuzzy logic</span>
+          <span class="project-tag">C++</span>
+          <span class="project-tag">Dart</span>
+          <span class="project-tag">Flutter</span>
+          <span class="project-tag">ESG</span>
+          <span class="project-tag">data analysis</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Client -->
+  <div class="projects-section" id="client">
+    <p class="projects-section-label">client-based</p>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://ring.com/" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2025</span>
+          <span class="project-type">client</span>
+        </div>
+        <span class="project-title">Ring + Blink @ Amazon</span>
+        <p class="project-desc">Hosted 5 focus groups and collected 500+ survey responses analyzing adoption barriers and user perception for Ring's smart home security products. Translated findings into targeted strategies for the college student segment.</p>
+        <div class="project-tags">
+          <span class="project-tag">user research</span>
+          <span class="project-tag">focus groups</span>
+          <span class="project-tag">survey analysis</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Research -->
+  <div class="projects-section" id="research">
+    <p class="projects-section-label">projects / research</p>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://devpost.com/software/fluently-rm76lw?ref_content=user-portfolio&ref_feature=in_progress" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2026</span>
+          <span class="project-type hackathon">hackathon</span>
+        </div>
+        <span class="project-title">Fluently — UC Berkeley AI Hackathon, San Jose CA</span>
+        <p class="project-desc">Developed a deterministic, browser-based oral reading fluency tool using Deepgram Nova-3 and a custom Levenshtein alignment engine to classify speech across 6 error categories against DIBELS 8th Edition WCPM thresholds.<br><br>Engineered a Redis system storing 5-dimensional skill vectors per session, running KNN search to surface the optimal next passages.</p>
+        <div class="project-tags">
+          <span class="project-tag">Deepgram</span>
+          <span class="project-tag">NLP</span>
+          <span class="project-tag">Redis</span>
+          <span class="project-tag">KNN</span>
+          <span class="project-tag">Levenshtein</span>
+        </div>
+      </a>
+
+      <div class="project-card">
+        <div class="project-card-meta">
+          <span class="project-year">2024</span>
+          <span class="project-type">research</span>
+        </div>
+        <span class="project-title">XPRIZE Carbon Removal</span>
+        <p class="project-desc">Executed business, finance, and operations aspects of high school's XPRIZE competition team, uniting 5 cross-functional teams.<br><br>Developed an ocean-based chemical reaction solution utilizing alkaline metals and carbonic acid for long-term carbon sequestration.</p>
+        <div class="project-tags">
+          <span class="project-tag">carbon capture</span>
+          <span class="project-tag">chemistry</span>
+          <span class="project-tag">business ops</span>
+          <span class="project-tag">finance</span>
+        </div>
+      </div>
+
+      <a class="project-card" href="https://samueli.ucla.edu/" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2024</span>
+          <span class="project-type">research</span>
+        </div>
+        <span class="project-title">Modeling LFG → H₂ Gas: UniSim Analysis @ UCLA</span>
+        <p class="project-desc">Researched converting landfill gas to hydrogen via methane dry reforming and water gas shift reaction. Conducted at UCLA Henry Samueli SOE under Prof. Vasilios Manousiouthakis.</p>
+        <div class="project-tags">
+          <span class="project-tag">UniSim</span>
+          <span class="project-tag">chemical engineering</span>
+          <span class="project-tag">sustainability</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Other -->
+  <div class="projects-section" id="other">
+    <p class="projects-section-label">other / personal</p>
+    <div class="projects-grid">
+
+      <a class="project-card" href="index.html">
+        <div class="project-card-meta">
+          <span class="project-year">2024–25</span>
+          <span class="project-type">personal</span>
+        </div>
+        <span class="project-title">shannonxyh.com — this website</span>
+        <p class="project-desc">Personal portfolio site built from scratch. Receipt-themed home and contact pages, physics-based interactive elements, and p5.js animations throughout.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML/CSS</span>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">p5.js</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="script.js"></script>
+
+</div><!-- end #projects-content -->
+
+<script>
+  (function () {
+    var PASSWORD = 'yourpassword';
+    var gate    = document.getElementById('gate');
+    var content = document.getElementById('projects-content');
+    var input   = document.getElementById('gate-input');
+    var error   = document.getElementById('gate-error');
+    var btn     = document.getElementById('gate-submit');
+
+    function tryUnlock() {
+      if (input.value === PASSWORD) {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        sessionStorage.setItem('projects-unlocked', '1');
+      } else {
+        error.textContent = 'incorrect password.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    if (sessionStorage.getItem('projects-unlocked') === '1') {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+    }
+
+    btn.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') tryUnlock();
+    });
+  })();
+</script>
+</body>
+</html>

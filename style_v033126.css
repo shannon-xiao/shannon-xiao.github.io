@@ -1,0 +1,1804 @@
+/* ===== GLOBAL ===== */
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: #FFFFFF;
+  overflow-x: hidden; /* Prevent horizontal scroll from full-width sections */
+  overflow-y: auto; /* Allow vertical scroll */
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE 10+ / Edge */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Opera */
+body::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-5%); 
+  width: 100%;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.receipt-logo {
+  width: 15%;
+  max-width: 60px;
+  height: auto;
+  display: inline-block;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #3b3b3b;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: #386adf;
+}
+
+.home-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #3b3b3b;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+.nav-links a:hover {
+  color: #386adf;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 5px;
+}
+
+.dropdown-toggle {
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  display: block;
+  margin-left: 20px;
+}
+
+.dropdown-toggle:hover {
+  color: #386adf;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  min-width: 120px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px 0;
+  margin-top: 0;
+  z-index: 1001;
+  flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 0 !important; /* overrides .nav-links a { margin-left: 20px } which applies to all nav anchors */
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: #f5f5f5;
+  color: #386adf;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding-top: 20px;
+  padding-bottom: 80px;
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.hero h1 {
+  font-size: 42px;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+/* ===== IMAGE CONTAINER ===== */
+.image-container {
+  position: relative;
+  display: block;
+  width: 50%;
+  max-width: 600px;
+  margin: 40px auto;
+  min-height: 400px; /* Prevent layout shift while image loads */
+}
+
+/* Overlay fade-in: hide text until image is ready, then fade in */
+.image-container.loading .overlay-text {
+  opacity: 0;
+}
+
+.image-container.loaded .overlay-text {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* ===== OVERLAY TEXT ===== */
+.overlay-text {
+  position: absolute;
+  top: 21%;
+  left: 0;
+  width: 100%;
+  padding: 0 5%;
+  color: #22478a;
+  font-size: 1rem;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* Contact page has more content — start higher */
+#contact .overlay-text {
+  top: 10%;
+}
+
+.overlay-text p {
+  margin: 0.15em 0;
+}
+
+.overlay-text p.left-align {
+  text-align: left;
+  padding-left: 17%;
+}
+
+.overlay-text p.center-align {
+  text-align: center;
+  padding-left: 0;
+}
+
+/* Receipt line items with prices */
+.overlay-text p.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 17%;
+  margin: 0.5em 0;
+}
+
+.overlay-text .item-name {
+  text-align: left;
+}
+
+.overlay-text .item-price {
+  text-align: right;
+  color: #22478a !important;
+  text-decoration: underline;
+}
+
+.overlay-text a.item-price:link,
+.overlay-text a.item-price:visited {
+  color: #22478a !important;
+}
+
+.overlay-text a.item-price:hover {
+  color: #386adf !important;
+  text-decoration: underline;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 60px 20px;
+}
+
+.about {
+  background: #FFFFFF;
+  min-height: 100vh;
+  padding: 60px 0 0 0;
+  text-align: center;
+}
+
+.about h2 {
+  color: #3b3b3b;
+  padding: 0 40px 40px 40px;
+  text-align: center;
+}
+
+/* Section containers with different backgrounds */
+.about-section {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+/* Override section-content max-width for facts section to allow full-width background */
+.facts-section .section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+/* Different background colors for each section */
+.facts-section {
+  background: #f8f9fa;
+  padding: 0; /* Remove padding so photo can touch edges */
+  overflow: hidden; /* Prevent photo from bleeding into next section */
+}
+
+/* Special grid for facts section - photo touches right edge */
+.facts-section .two-column-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: 450px;
+}
+
+/* Add padding back to the text column only - reduced to match education section */
+.facts-section .column:first-child {
+  padding: 25px 30px 25px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Improve line spacing in facts section */
+.facts-section .column:first-child p {
+  margin: 0.6em 0;
+  line-height: 1.6;
+}
+
+.facts-section .column:first-child h4 {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+/* Photo column has no padding - fills entire right half */
+.facts-section .column:last-child {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.education-section {
+  background: #e8f4f8;
+}
+
+.interests-section {
+  background: #fff5e6;
+}
+
+.photo-section {
+  background: #FFFFFF;
+  text-align: center;
+}
+
+/* Two-column grid for education/courses */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.two-column-grid .column {
+  min-width: 0; /* Prevents overflow */
+}
+
+/* Photo in facts section */
+.facts-photo {
+  width: auto;
+  height: 100%;
+  display: block;
+  border-radius: 0 !important; /* overrides .image-container img { border-radius: 10px } — photo must touch the edge with no rounding */
+  object-fit: contain;
+  object-position: center center;
+  margin: 0 auto;
+}
+
+.about img {
+  width: 300px;
+  border-radius: 10%;
+  margin-top: 20px;
+}
+
+.about h4 a {
+  color: #3b3b3b !important; /* overrides browser default blue link color */
+  text-decoration: none !important; /* overrides browser default underline */
+}
+
+.about h4 a:link,
+.about h4 a:visited {
+  color: #3b3b3b !important; /* keep consistent color for visited links */
+  text-decoration: none !important;
+}
+
+.about h4 a:hover {
+  color: #386adf !important;
+  text-decoration: none !important;
+}
+
+/* ===== PROJECTS PAGE STYLES ===== */
+.projects {
+  padding: 80px 40px 80px 40px;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects p { 
+  text-decoration: none;
+  color: #3b3b3b;
+  line-height: 1.8;
+  margin: 0.5em 0 0.8em 0;
+}
+
+.projects h4 {
+  margin-top: 2em;
+  margin-bottom: 0.3em;
+  font-size: 17px;
+}
+
+.projects h4 a {
+  color: #3b3b3b !important; /* overrides browser default blue link color */
+  text-decoration: none !important; /* overrides browser default underline */
+}
+
+.projects h4 a:link,
+.projects h4 a:visited {
+  color: #3b3b3b !important; /* keep consistent color for visited links */
+  text-decoration: none !important;
+}
+
+.projects h4 a:hover {
+  color: #386adf !important; /* overrides the :link/:visited !important above */
+  text-decoration: none !important;
+}
+
+.projects h2 { 
+  color: #3b3b3b;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 3em;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.4em;
+  border-bottom: 1.5px solid #e0e0e0;
+}
+
+.projects h2:first-child {
+  margin-top: 0;
+}
+
+/* Project entry block — subtle left accent */
+.projects h4 + p,
+.projects h4 ~ p {
+  padding-left: 14px;
+  border-left: 2px solid #e8ecf4;
+}
+
+/* Project Sections */
+.project-section {
+  margin-bottom: 60px;
+  padding-top: 20px;
+  scroll-margin-top: 80px; /* Account for fixed navbar */
+}
+
+.project-section h3 {
+  color: #3b3b3b;
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #386adf;
+  padding-bottom: 10px;
+}
+
+.contact {
+  background: #FFFFFF;
+  color: #000000 !important; /* explicit fallback color for the section */
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
+
+.contact h2,
+.contact p {
+  color: #3b3b3b !important; /* overrides .contact { color: #000000 !important } above — headings/paragraphs use softer dark */
+  margin-bottom: 0.8em;
+}
+
+.contact h4 {
+  color: #3b3b3b;
+  margin-top: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.contact p {
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+
+/* ===== RECEIPT CONTACT OVERLAY ===== */
+/* Bold "contact me" heading on receipt */
+.overlay-text p.receipt-bold {
+  font-weight: 700;
+}
+
+/* Nudge contact page logo up slightly */
+.contact-logo-container {
+  margin-top: -0.5em;
+}
+
+/* Contact page overlay: start below receipt header, smaller font to fit */
+#contact .overlay-text {
+  top: 20%;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+/* ===== RECEIPT FORM ===== */
+.receipt-form {
+  width: 100%;
+  padding: 0 17% 0 17%;
+  box-sizing: border-box;
+  margin: 0.15em 0;
+}
+
+.receipt-field {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.25em 0;
+  gap: 0.4em;
+}
+
+.receipt-field label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  color: #22478a;
+  font-weight: 700;
+  min-width: 4.2em;
+  padding-top: 0.1em;
+  flex-shrink: 0;
+}
+
+.receipt-field input,
+.receipt-field textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  color: #22478a;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #22478a;
+  outline: none;
+  width: 100%;
+  padding: 0.05em 0.2em;
+  box-sizing: border-box;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.receipt-field input::placeholder,
+.receipt-field textarea::placeholder {
+  color: #7a9fd4;
+  font-style: italic;
+}
+
+.receipt-field textarea {
+  resize: none;
+  line-height: 1.3;
+  border: none;
+  border-bottom: 1px solid #22478a;
+}
+
+.receipt-field input:focus,
+.receipt-field textarea:focus {
+  border-bottom-color: #386adf;
+}
+
+.receipt-submit-row {
+  text-align: center;
+  margin: 0.1em 0 0.05em 0;
+}
+
+.receipt-submit {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #22478a;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.05em;
+}
+
+.receipt-submit:hover {
+  color: #386adf;
+}
+
+.receipt-form-status {
+  font-weight: 400;
+  font-style: italic;
+  margin: 0.15em 0 !important;
+  min-height: 0.9em;
+  font-size: 0.78rem;
+}
+
+/* ===== MOBILE: scale form to match overlay font size ===== */
+@media (max-width: 600px) {
+  #contact .overlay-text {
+    top: 20%;
+    font-size: 1.9vw;
+    line-height: 1.25;
+  }
+
+  .receipt-form {
+    padding: 0 10% 0 10%;
+  }
+
+  .receipt-field {
+    margin: 0.15em 0;
+    gap: 0.3em;
+  }
+
+  .receipt-field label,
+  .receipt-field input,
+  .receipt-field textarea,
+  .receipt-submit,
+  .receipt-form-status {
+    font-size: 1.9vw;
+  }
+
+  .receipt-field label {
+    min-width: 3.8em;
+  }
+
+  .overlay-text p.contact-label {
+    margin: 0.15em 0 0 0;
+  }
+
+  .overlay-text p.contact-detail {
+    margin: 0.05em 0 0.15em 0;
+  }
+}
+
+/* Linked labels (email me / connect with me) */
+.receipt-contact-link {
+  color: #22478a !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.receipt-contact-link:hover {
+  color: #386adf !important;
+}
+
+/* Detail lines (email address, linkedin handle) */
+.overlay-text p.contact-detail {
+  margin: 0.05em 0 0.25em 0;
+  font-style: italic;
+}
+
+/* Label lines (email me, connect with me) */
+.overlay-text p.contact-label {
+  margin: 0.25em 0 0 0;
+}
+
+/* Spacer between the two contact blocks */
+.overlay-text p.contact-spacer {
+  display: none;
+}
+
+.contact h4 a,
+.contact h4 a:link,
+.contact h4 a:visited {
+  color: #3b3b3b !important; /* overrides browser default blue link color */
+  text-decoration: none !important; /* overrides browser default underline */
+}
+
+.contact h4 a:hover {
+  color: #386adf !important; /* overrides the :link/:visited !important above */
+  text-decoration: none !important;
+}
+
+/* contact-logo kept for fallback only */
+.contact-logo {
+  width: 80px;
+  height: auto;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 600px) {
+
+  /* Remove body padding/margin */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* NAVBAR - Transparent and scaled */
+  .navbar {
+    height: 50px;
+    padding: 0 4vw;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .logo {
+    font-size: 4vw;
+  }
+
+  .nav-links a {
+    font-size: 3vw;
+    margin-left: 2.5vw;
+  }
+
+  .home-icon {
+    font-size: 3.5vw;
+    margin-right: 1.5vw;
+  }
+
+  /* Dropdown adjustments for mobile */
+  .dropdown {
+    margin-left: 0;
+  }
+
+  .dropdown-toggle {
+    margin-left: 2.5vw 
+  }
+
+  .dropdown-menu {
+    min-width: 100px;
+    font-size: 3vw;
+  }
+
+  .dropdown-menu a {
+    font-size: 3vw;
+    padding: 8px 15px;
+  }
+
+  /* HERO - Remove all padding for full-page receipt */
+  .hero {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* IMAGE CONTAINER - Fill entire viewport */
+  .image-container {
+    width: 100vw;
+    max-width: none;
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+
+  /* OVERLAY TEXT - Properly scaled and positioned */
+  .overlay-text {
+    top: 19%;
+    font-size: 2.6vw;
+    padding: 0;
+    line-height: 1.4;
+  }
+
+  .overlay-text p {
+    margin: 0.35em 0;
+  }
+
+  .overlay-text p.left-align {
+    padding-left: 10%;
+  }
+
+  .overlay-text p.center-align {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  /* Receipt items on mobile */
+  .overlay-text p.receipt-item {
+    padding-right: 10%;
+    margin-bottom: 0.2em;
+  }
+
+  /* Logo container on mobile */
+  .logo-container {
+    margin-top: 0;
+    margin-bottom: 0;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 105%;
+    width: auto;
+    height: auto;
+  }
+
+  .receipt-logo {
+    width: auto;
+    height: 28px;
+    max-width: none;
+    max-height: 50px;
+    object-fit: contain;
+  }
+
+  /* OTHER SECTIONS */
+  section.about,
+  section.projects,
+  section.contact {
+    padding: 40px 20px;
+  }
+
+  section.projects {
+    padding: 60px 20px;
+  }
+
+  /* About page mobile adjustments */
+  section.about {
+    padding: 40px 0 0 0;
+  }
+
+  .about h2 {
+    padding: 0 20px 30px 20px !important;
+  }
+
+  .about-section {
+    padding: 30px 20px;
+  }
+
+  /* Reset ALL section-content padding on mobile — override all specificity levels */
+  .section-content,
+  .about .section-content,
+  .facts-hero-section .section-content,
+  .facts-section .section-content,
+  .education-section .section-content {
+    margin: 0 auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Stack two-column grid on mobile */
+  .two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Facts section specific mobile styling */
+  .facts-section {
+    padding: 0;
+    width: 100%;
+    position: static;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+  }
+
+  .facts-section .two-column-grid {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .facts-section .column:first-child {
+    padding: 30px 20px;
+    order: 1;
+    width: 100%;
+  }
+
+  /* Improve mobile text spacing */
+  .facts-section .column:first-child p {
+    margin: 0.5em 0;
+    line-height: 1.5;
+  }
+
+  .facts-section .column:first-child h4 {
+    margin-bottom: 0.8em;
+  }
+
+  .facts-section .column:last-child {
+    padding: 0;
+    order: 2;
+    width: 100%;
+    display: block;
+    height: auto;
+    line-height: 0;
+  }
+
+  /* Facts photo fills full width edge-to-edge on mobile */
+  .facts-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    object-fit: contain;
+    transform: none;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .about img {
+    width: 40vw;
+    max-width: 200px;
+  }
+
+  .projects li {
+    font-size: 4vw;
+  }
+
+}
+
+/* ===== TABLET RESPONSIVENESS ===== */
+@media (min-width: 601px) and (max-width: 1024px) {
+  
+  .image-container {
+    width: 70%;
+    max-width: 500px;
+  }
+
+  .overlay-text {
+    font-size: 0.9rem;
+  }
+
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+/* ===== CREATIVE ABOUT PAGE REDESIGN ===== */
+
+/* Larger typography — !important overrides the earlier .about h2 rule in SECTIONS */
+.about h2 {
+  font-size: 36px !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.about h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 1.5em;
+  color: #3b3b3b;
+}
+
+.about h4 {
+  font-size: 24px !important; /* overrides earlier .about h4 or general h4 sizing */
+  font-weight: 700;
+  margin-bottom: 1.2em;
+}
+
+.about p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Hero Facts Section - Photo LEFT, Text RIGHT (like first image) */
+.facts-hero-section {
+  background: #FFFFFF;
+  padding: 60px 0 !important;
+  margin: 0;
+}
+
+.facts-hero-section .section-content {
+  max-width: 1200px;
+  padding: 0 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative; /* anchors .hero-left-symbols */
+  overflow: visible;  /* lets symbols bleed outside */
+}
+
+/* Center section content on about page */
+.about .section-content {
+  margin: 0 auto !important;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+
+.about .two-column-grid {
+  text-align: left; /* Keep grid text readable */
+}
+
+.facts-hero-grid {
+  display: grid;
+  grid-template-columns: 50% 50%; /* equal split — larger photo */
+  gap: 40px;
+  align-items: center;
+  text-align: left;
+  justify-items: center; /* center each column's content horizontally */
+}
+
+.hero-photo-column {
+  position: relative;
+  width: 100%;
+  order: 1; /* Photo on left */
+}
+
+.hero-photo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.hero-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
+}
+
+.hero-text-column {
+  padding: 20px 0;
+  order: 2; /* Text on right */
+}
+
+.hero-text-column h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 1.5em;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.facts-list p {
+  font-size: 18px;
+  line-height: 1.9;
+  margin: 1.3em 0;
+  color: #34495e;
+  font-weight: 400;
+}
+
+/* Education Section - align text properly */
+.education-section {
+  background: #f7f8fc;
+  border-top: 1px solid #e8ecf4;
+  padding: 60px 20px !important;
+}
+
+.education-section .section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.education-section h4 {
+  font-size: 24px;
+  margin-bottom: 1.5em;
+}
+
+.education-section p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* Interests Section */
+.interests-section {
+  background: #f7f8fc;
+  border-top: 1px solid #e8ecf4;
+  padding: 60px 20px !important;
+}
+
+.interests-section h4 {
+  font-size: 24px;
+  margin-bottom: 1.5em;
+}
+
+.interests-section p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .about h2 {
+    font-size: 28px !important; /* mobile override of the 36px !important set in CREATIVE ABOUT PAGE REDESIGN */
+    padding: 0 20px 30px 20px !important; /* overrides .about h2 { padding: 0 40px 40px 40px } */
+    text-align: center;
+  }
+
+  .about h3 {
+    font-size: 22px;
+  }
+
+  .about h4 {
+    font-size: 20px !important; /* mobile override of the 24px !important set in CREATIVE ABOUT PAGE REDESIGN */
+  }
+
+  .about p {
+    font-size: 16px;
+  }
+
+  /* Hero mobile - stack photo above text */
+  .facts-hero-section {
+    padding: 0 0 40px 0 !important;
+  }
+
+  .facts-hero-section .section-content {
+    padding: 0;
+    max-width: none;
+  }
+
+  .facts-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-photo-column {
+    width: 100%;
+    padding: 0;
+    order: 1;
+  }
+
+  .hero-text-column {
+    order: 2;
+    padding: 0;
+  }
+
+  .hero-photo {
+    width: 100%;
+    max-height: none;
+    min-height: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+
+  .hero-text-column h3 {
+    font-size: 22px;
+    margin-bottom: 1.2em;
+  }
+
+  .facts-list p {
+    font-size: 16px;
+    margin: 1em 0;
+    line-height: 1.7;
+  }
+
+  .education-section,
+  .interests-section {
+    padding: 40px 20px !important;
+  }
+}
+
+/* ===== ABOUT PAGE REDESIGN v2 ===== */
+
+/* Override .about img { width: 300px } for the hero photo — same specificity fix as sw-badge-img */
+.about .hero-photo {
+  width: 100% !important;    /* overrides .about img { width: 300px } */
+  border-radius: 0 !important; /* overrides .about img { border-radius: 10% } — polaroid frame has no rounding */
+  margin-top: 0 !important;  /* overrides .about img { margin-top: 20px } */
+  box-shadow: none; /* shadow lives on the card, not the image */
+}
+
+/* Name heading in hero section */
+.hero-text-column .about-name {
+  font-size: 26px;
+  color: #22478a;
+  margin-top: 0;
+  margin-bottom: 1.2em;
+  line-height: 1.3;
+}
+
+/* Intro paragraphs beside the photo */
+.about-intro-text p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3b3b3b;
+  margin: 0 0 1em 0;
+}
+
+/* Section label headings — lowercase, left navy border rule */
+.about-label {
+  font-size: 13px !important; /* overrides .about h4 { font-size: 24px !important } */
+  font-weight: 700;
+  color: #22478a;
+  border-left: 3px solid #22478a;
+  padding-left: 10px;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  margin-bottom: 1.4em;
+  margin-top: 0;
+}
+
+.about-label a {
+  color: #22478a !important; /* overrides browser default blue */
+  text-decoration: none !important;
+}
+
+.about-label a:hover {
+  color: #386adf !important;
+}
+
+/* Spacing between stacked sub-sections within one column (e.g. based in + education) */
+.about-subsection {
+  margin-top: 2em;
+}
+
+/* Skills section (new — languages + software side by side) */
+.about-skills-section {
+  background: #FFFFFF;
+  border-top: 1px solid #e8ecf4;
+}
+
+/* Language pill list */
+.language-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 280px;
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid #22478a;
+  border-radius: 20px;
+  padding: 8px 18px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.language-item:hover {
+  border-color: #386adf;
+  transform: translateY(-3px);
+}
+
+.language-item:hover .language-name,
+.language-item:hover .language-level {
+  color: #386adf;
+}
+
+.language-name {
+  font-weight: 700;
+  color: #22478a;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.language-level {
+  color: #386adf;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+/* Software list with dots */
+.software-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.software-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+
+.software-item:hover {
+  transform: translateY(-3px);
+}
+
+.software-item:hover .software-item-name {
+  color: #386adf;
+}
+
+.software-item:hover .software-dot.filled {
+  background: #386adf;
+}
+
+/* Letter badge — temporary until icon image files are provided.
+   To replace: swap <span class="sw-badge"> for <img src="icon.png" class="sw-badge-img" alt="..."> */
+.sw-badge {
+  width: 32px;
+  height: 32px;
+  background: #22478a;
+  color: #ffffff;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* Polaroid doodle images — need specificity over .about img { width: 300px } */
+.about .polaroid-doodle {
+  width: 88px !important;   /* overrides .about img { width: 300px } */
+  height: 88px !important;
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
+
+.about .polaroid-doodle-bl {
+  width: 44px !important;   /* half the size of top-right */
+  height: 44px !important;
+}
+
+/* Image badge — .about .sw-badge-img needed for specificity over .about img { width: 300px } */
+.about .sw-badge-img {
+  width: 44px !important;    /* overrides .about img { width: 300px } */
+  height: 44px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 0 !important;  /* overrides .about img { border-radius: 10% } */
+  margin-top: 0 !important;     /* overrides .about img { margin-top: 20px } */
+  display: block;
+}
+
+.software-item-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3b3b3b; /* matches education section text gray */
+  min-width: 110px; /* fixed width — enough for "PowerPoint", keeps dots column aligned */
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.software-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.software-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #d0d0d0;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.software-dot.filled {
+  background: #22478a;
+  transition: background 0.2s ease;
+}
+
+/* Interests pill tags */
+.interests-section .section-content {
+  text-align: left; /* overrides .about .section-content { text-align: center } */
+}
+
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.5em;
+  align-items: flex-start; /* prevent taller pills from stretching shorter ones */
+}
+
+.interest-tag {
+  display: flex;
+  align-items: center; /* vertically center text within pill */
+  border: 1.5px solid #22478a;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 14px;
+  color: #22478a;
+  line-height: 1.3;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.interest-tag:hover {
+  color: #386adf;
+  border-color: #386adf;
+  transform: translateY(-3px);
+}
+
+/* ===== ABOUT REDESIGN v2 — MOBILE ===== */
+@media (max-width: 600px) {
+  .hero-text-column .about-name {
+    font-size: 20px;
+    margin-bottom: 1em;
+  }
+
+  .about-intro-text p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .about-label {
+    font-size: 12px !important; /* mobile override of 13px above */
+  }
+
+  .language-list {
+    max-width: none;
+  }
+
+  .language-item {
+    padding: 6px 14px;
+  }
+
+  .language-name {
+    font-size: 14px;
+  }
+
+  .language-level {
+    font-size: 13px;
+  }
+
+  .software-item-name {
+    font-size: 14px;
+  }
+
+  .interest-tag {
+    font-size: 13px;
+    padding: 4px 12px;
+  }
+}
+
+/* ===== ABOUT PAGE BANNER ===== */
+.about-banner {
+  width: 100%;
+  height: 520px;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-scroll-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 50px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.banner-scroll-btn:hover {
+  opacity: 1;
+  transform: translateY(3px);
+}
+
+.banner-overlay-text {
+  position: absolute;
+  bottom: 32px;
+  left: 40px;
+  color: #FFFFFF;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+
+/* Placeholder shown until a real banner photo is provided */
+.about-banner-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f7f8fc;
+  border-bottom: 1px solid #e8ecf4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-banner-placeholder span {
+  font-size: 14px;
+  color: #9a9080;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* ===== POLAROID TEXT SYMBOLS (replace LOGO doodles) ===== */
+.polaroid-sym {
+  position: absolute;
+  font-weight: 700;
+  color: #b0b8d8; /* muted periwinkle — matches left-side symbols */
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* <> top-right — half on, half off the polaroid */
+.polaroid-sym-tr {
+  top: 44px;
+  right: -32px;
+  font-size: 58px;
+  opacity: 1;
+  transform: rotate(8deg);
+  color: #b5d1fa;
+  letter-spacing: -3px;
+}
+
+/* * bottom-left — slightly overlaid onto the photo */
+.polaroid-sym-bl {
+  bottom: 52px;
+  left: -18px; /* moved back left, half on/off */
+  font-size: 56px;
+  opacity: 1;
+  transform: rotate(-8deg);
+  color: #cdd7f8;
+}
+
+/* ===== FLOATING LEFT-SIDE SYMBOLS ===== */
+.hero-left-symbols {
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 160px; /* wide enough to allow horizontal stagger */
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-sym {
+  position: absolute;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* & — top left, slight counter-clockwise tilt */
+.hero-sym-amp {
+  font-size: 80px;
+  top: 8%;
+  left: 10px;
+  opacity: 1;
+  transform: rotate(-6deg);
+  color: #dfdff2;
+}
+
+/* # — middle, shifted right, clockwise tilt */
+.hero-sym-hash {
+  font-size: 58px;
+  top: 44%;
+  left: 70px;
+  opacity: 1;
+  transform: rotate(10deg);
+  color: #cdd7f8;
+}
+
+/* @ — bottom left, slight clockwise tilt */
+.hero-sym-at {
+  font-size: 68px;
+  bottom: 8%;
+  left: 5px;
+  opacity: 1;
+  transform: rotate(4deg);
+  color: #cdd7f8;
+}
+
+/* Floating fact card — overlaps bottom-right of the polaroid */
+.polaroid-fact-card {
+  position: absolute;
+  bottom: -30px;
+  right: -60px;
+  background: #FFFFFF;
+  border: 1px solid #d0d8e8;
+  border-radius: 6px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  transform: rotate(6deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 3;
+  min-width: 110px;
+  text-align: center;
+}
+
+.polaroid-fact-card:hover {
+  transform: rotate(6deg) translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+.fact-date {
+  font-size: 24px !important; /* overrides .about p — 15px + 3px */
+  font-weight: 700;
+  color: #22478a;
+  margin: 0 0 2px 0 !important;
+  letter-spacing: 1px;
+  line-height: 1.3;
+}
+
+.fact-location {
+  font-size: 11px !important; /* overrides .about p */
+  color: #6b7c93;
+  font-style: italic;
+  margin: 0 !important;
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
+/* Mobile — pin card inline, no absolute positioning */
+@media (max-width: 600px) {
+  .polaroid-fact-card {
+    position: static;
+    transform: none;
+    margin: 10px auto 0;
+    display: inline-block;
+  }
+}
+
+/* Polaroid caption below photo inside the card */
+.polaroid-caption {
+  font-size: 13px;
+  font-style: italic;
+  color: #9a9080;
+  text-align: center;
+  margin: 10px 0 0 0;
+  letter-spacing: 0.3px;
+}
+
+/* ===== ABOUT PAGE PLAYFUL REDESIGN ===== */
+
+/* Photo column — polaroid card */
+.hero-photo-column {
+  background: #FFFFFF; /* polaroid is always white paper */
+  border-radius: 3px;
+  padding: 12px 12px 40px 12px; /* extra bottom padding = polaroid caption space */
+  box-sizing: border-box;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.08);
+  transform: rotate(-1.5deg);
+  max-width: 300px;
+  margin: 0 auto 0 auto; /* centered within its grid column */
+  justify-self: center; /* explicitly center in the grid column */
+}
+
+/* Greeting above photo (Issue 2) */
+.about-greeting {
+  font-size: 15px;
+  font-style: italic;
+  color: #386adf;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.3px;
+}
+
+/* "all about (me)" header above name — .about p overrides bare class, need higher specificity */
+.about p.about-intro-header {
+  font-size: 35px;
+  font-weight: 400; /* not bold */
+  color: #3b3b3b;
+  margin: 0 0 0.2em 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  text-align: right;
+  padding-right: 48px; /* keep clear of the sparkles on the right edge */
+}
+
+/* Large name treatment (Issue 3) */
+.about-name {
+  font-size: 40px !important; /* overrides .about h3 { font-size: 28px } */
+  color: #22478a;
+  font-weight: 700;
+  margin-top: 0 !important;
+  margin-bottom: 0.2em !important;
+  line-height: 1.2;
+}
+
+/* Tagline beneath name (Issue 3) */
+.about-tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: #6b7c93; /* muted blue-gray, lighter than navy */
+  margin: 0 0 1.4em 0;
+  letter-spacing: 0.3px;
+}
+
+/* Sparkle accents (Issue 2) */
+.hero-text-column {
+  position: relative; /* allows sparkles to anchor to this column */
+}
+
+.sparkle {
+  position: absolute;
+  color: #386adf;
+  font-style: normal;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.sparkle-1 {
+  top: 4px;
+  right: 6px;
+  font-size: 20px;
+  opacity: 0.65;
+}
+
+.sparkle-2 {
+  top: 36px;
+  right: 0px;
+  font-size: 10px;
+  opacity: 0.45;
+}
+
+.sparkle-3 {
+  top: 110px; /* moved out of the intro text area — anchored near the tagline instead */
+  right: 16px;
+  font-size: 14px;
+  opacity: 0.35;
+}
+
+/* ===== LOCAL TIME DISPLAY ===== */
+.local-time-display {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.local-time-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.local-time-who {
+  font-size: 13px;
+  color: #6b7c93;
+  font-style: italic;
+  min-width: 2.8em; /* aligns "mine" and "yours" columns */
+  flex-shrink: 0;
+}
+
+.local-time-value {
+  font-size: 14px;
+  color: #3b3b3b;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.local-time-diff {
+  font-size: 12px;
+  color: #386adf;
+  font-style: italic;
+  margin-left: 2px;
+}
+
+/* Mobile — hide sparkles and decorative symbols (they'd misalign in stacked layout) */
+@media (max-width: 600px) {
+  .hero-left-symbols,
+  .polaroid-sym {
+    display: none;
+  }
+  .about-banner {
+    height: 320px;
+  }
+
+  .hero-photo-column {
+    padding: 10px 10px 32px 10px;
+    border-radius: 2px;
+    transform: none; /* no tilt on mobile — too narrow to look good */
+  }
+
+  .polaroid-caption {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .about-name {
+    font-size: 28px !important; /* mobile override of 40px above */
+    margin-bottom: 0.15em !important;
+  }
+
+  .about-tagline {
+    font-size: 13px;
+    margin-bottom: 1em;
+  }
+
+  .about-greeting {
+    font-size: 14px;
+  }
+
+  .sparkle {
+    display: none; /* hide on mobile — stacked layout breaks positioning */
+  }
+}

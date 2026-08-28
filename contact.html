@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+
+  <!-- Preload critical images -->
+  <link rel="preload" href="RECEIPT.png" as="image">
+
+  <!-- Google Fonts: Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <a href="folio.html">folio,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<!-- Contact Receipt -->
+<section class="hero" id="contact">
+  <div class="image-container loading">
+    <img src="RECEIPT.png" alt="Contact Receipt" id="contact-receipt-image" width="4320" height="5760">
+    <div class="overlay-text">
+
+      <p class="center-align">-------------------------------------------------------------------------</p>
+      <p class="center-align receipt-bold">contact me</p>
+      <p class="center-align">-------------------------------------------------------------------------</p>
+
+      <p class="center-align contact-label">
+        <a href="mailto:shannonxiao@berkeley.edu" class="receipt-contact-link">email me</a>
+      </p>
+      <p class="center-align contact-detail">shannonxiao [at] berkeley [dot] edu</p>
+
+      <p class="center-align contact-label">
+        <a href="https://www.linkedin.com/in/shannonxiao/" class="receipt-contact-link">connect with me</a>
+      </p>
+      <p class="center-align contact-detail">linkedin: shannonxiao</p>
+
+      <p class="center-align">-------------------------------------------------------------------------</p>
+
+      <!-- =====================================================
+           FORMSPREE FORM
+           To activate:
+           1. Go to https://formspree.io — create a free account
+           2. Create a new form, copy your endpoint ID (e.g. xabcdefg)
+           3. Replace YOUR_FORM_ID below with that ID
+           ===================================================== -->
+      <form
+        class="receipt-form"
+        action="https://formspree.io/f/mqedwgqa"
+        method="POST"
+        id="contact-form"
+      >
+        <div class="receipt-field">
+          <label for="name">name:</label>
+          <input type="text" id="name" name="name" placeholder="your name" required autocomplete="off">
+        </div>
+
+        <div class="receipt-field">
+          <label for="email">email:</label>
+          <input type="email" id="email" name="email" placeholder="your_email [at] web [dot] domain" required autocomplete="off">
+        </div>
+
+        <div class="receipt-field">
+          <label for="message">message:</label>
+          <textarea id="message" name="message" placeholder="your message here...!!!" rows="2" required></textarea>
+        </div>
+
+        <div class="receipt-submit-row">
+          <button type="submit" class="receipt-submit">send &#8594;</button>
+        </div>
+      </form>
+
+      <!-- Status message shown after submit -->
+      <p class="center-align receipt-form-status" id="form-status"></p>
+
+      <div class="logo-container contact-logo-container">
+        <img src="LOGO.png" alt="Logo" class="receipt-logo" width="500" height="500">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Handle Formspree submission via fetch — no page redirect
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.transition = 'opacity 0.4s ease';
+        form.style.opacity = '0';
+        form.style.display = 'block';
+        status.textContent = '✓ message sent. thank you!';
+        status.style.fontWeight = '700';
+
+        // After 3 seconds, fade form back in and clear fields
+        setTimeout(() => {
+          status.textContent = '';
+          form.reset();
+          form.style.opacity = '1';
+        }, 3000);
+      } else {
+        status.textContent = '× something went wrong. try emailing directly.';
+      }
+    } catch {
+      status.textContent = '× network error. try emailing directly.';
+    }
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

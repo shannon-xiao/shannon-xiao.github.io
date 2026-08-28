@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shannonxiao — other</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      gap: 1.2rem;
+    }
+    #gate p {
+      font-size: 13px;
+      color: #3b3b3b;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    #gate-label {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: -0.4rem;
+    }
+    #gate-input {
+      border: none;
+      border-bottom: 1.5px solid #3b3b3b;
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      padding: 4px 2px;
+      width: 180px;
+      text-align: center;
+      color: #3b3b3b;
+      background: transparent;
+      letter-spacing: 2px;
+    }
+    #gate-input::placeholder { color: #ccc; letter-spacing: 1px; }
+    #gate-error {
+      font-size: 11px;
+      color: #c0392b;
+      letter-spacing: 0.5px;
+      min-height: 14px;
+    }
+    #gate-submit {
+      background: none;
+      border: 1.5px solid #3b3b3b;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 22px;
+      cursor: pointer;
+      color: #3b3b3b;
+      transition: background 0.15s, color 0.15s;
+    }
+    #gate-submit:hover { background: #3b3b3b; color: #fff; }
+    #other-content { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="gate">
+  <p>under construction.</p>
+  <span id="gate-label">password</span>
+  <input id="gate-input" type="password" placeholder="· · · · · ·" autocomplete="off">
+  <span id="gate-error"></span>
+  <button id="gate-submit">enter</button>
+</div>
+
+<div id="other-content">
+
+<!-- Lightbox -->
+<div id="folio-lightbox" role="dialog" aria-modal="true">
+  <button id="folio-lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-text">
+    <h4 id="lightbox-title"></h4>
+    <p id="lightbox-caption"></p>
+    <p id="lightbox-notes"></p>
+  </div>
+</div>
+
+<div class="navbar">
+  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <div class="nav-links">
+    <a href="index.html" class="home-icon">🧾</a>
+    <a href="about.html">about,</a>
+    <a href="folio.html">folio,</a>
+    <div class="dropdown">
+      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <div class="dropdown-menu">
+        <a href="projects.html#client">client</a>
+        <a href="projects.html#research">research</a>
+        <a href="projects.html#other">other</a>
+      </div>
+    </div>
+    <a href="contact.html">contact.</a>
+  </div>
+</div>
+
+<section class="folio" id="other">
+
+  <h2>other</h2>
+  <p class="folio-section-desc">
+    Other creative works and media that doesn't fit neatly elsewhere (currently in progress of uploading.)
+  </p>
+
+  <div class="folio-row">
+    <div class="folio-item"
+         data-title="NewJeans 1st EP Sample Poster"
+         data-caption=""
+         data-notes="">
+      <img src="folio-other-images/NewJeans 1st EP Sample Poster.png" alt="NewJeans 1st EP Sample Poster">
+      <span class="folio-item-caption">NewJeans 1st EP Sample Poster</span>
+    </div>
+  </div>
+
+</section>
+
+</div><!-- end #other-content -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ── Password gate ── */
+  (function () {
+    var PASSWORD = 'yourpassword';
+    var gate    = document.getElementById('gate');
+    var content = document.getElementById('other-content');
+    var input   = document.getElementById('gate-input');
+    var error   = document.getElementById('gate-error');
+    var btn     = document.getElementById('gate-submit');
+
+    function tryUnlock() {
+      if (input.value === PASSWORD) {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        sessionStorage.setItem('other-unlocked', '1');
+      } else {
+        error.textContent = 'incorrect password.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    if (sessionStorage.getItem('other-unlocked') === '1') {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+    }
+
+    btn.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') tryUnlock();
+    });
+  })();
+</script>
+<script>
+  /* ── Lightbox ── */
+  (function () {
+    var box     = document.getElementById('folio-lightbox');
+    var img     = document.getElementById('lightbox-img');
+    var title   = document.getElementById('lightbox-title');
+    var caption = document.getElementById('lightbox-caption');
+    var notes   = document.getElementById('lightbox-notes');
+    var close   = document.getElementById('folio-lightbox-close');
+
+    function openLightbox(item) {
+      img.src             = item.querySelector('img').src;
+      img.alt             = item.dataset.title || '';
+      title.textContent   = item.dataset.title   || '';
+      caption.textContent = item.dataset.caption || '';
+      notes.textContent   = item.dataset.notes   || '';
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    document.querySelectorAll('.folio-item:not(.folio-placeholder)').forEach(function (item) {
+      item.addEventListener('click', function () { openLightbox(item); });
+    });
+
+    close.addEventListener('click', closeLightbox);
+    box.addEventListener('click', function (e) { if (e.target === box) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  })();
+</script>
+
+</body>
+</html>
