@@ -12,13 +12,16 @@
   <style>
     #gate {
       position: fixed;
-      inset: 0;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
+      z-index: 100;
       gap: 1.2rem;
     }
     #gate p {
@@ -191,17 +194,6 @@
 </head>
 <body>
 
-<!-- Password gate -->
-<div id="gate">
-  <p>under construction.</p>
-  <span id="gate-label">password</span>
-  <input id="gate-input" type="password" placeholder="· · · · · ·" autocomplete="off">
-  <span id="gate-error"></span>
-  <button id="gate-submit">enter</button>
-</div>
-
-<div id="projects-content">
-
 <div class="navbar">
   <a href="index.html" class="logo">shannonxyh─☆</a>
   <div class="nav-links">
@@ -220,6 +212,17 @@
     <a href="contact.html">contact.</a>
   </div>
 </div>
+
+<!-- Password gate -->
+<div id="gate">
+  <p>under construction.</p>
+  <span id="gate-label">password</span>
+  <input id="gate-input" type="password" placeholder="· · · · · ·" autocomplete="off">
+  <span id="gate-error"></span>
+  <button id="gate-submit">enter</button>
+</div>
+
+<div id="projects-content">
 
 <section class="projects">
 
