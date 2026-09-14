@@ -35,6 +35,11 @@ body::-webkit-scrollbar {
   display: inline-block;
 }
 
+/* ===== CUSTOM CROSSHAIR CURSOR ===== */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
 /* ===== NAVBAR ===== */
 .navbar {
   position: absolute;
@@ -82,6 +87,12 @@ body::-webkit-scrollbar {
 
 .nav-links a:hover {
   color: #386adf;
+}
+
+.nav-links a.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 /* ===== DROPDOWN ===== */
@@ -269,6 +280,7 @@ body::-webkit-scrollbar {
 
 .overlay-text .item-name {
   text-align: left;
+  font-weight: 700;
 }
 
 .overlay-text .item-price {
@@ -372,13 +384,6 @@ section {
   overflow: hidden;
 }
 
-.education-section {
-  background: #e8f4f8;
-}
-
-.interests-section {
-  background: #fff5e6;
-}
 
 .photo-section {
   background: #FFFFFF;
@@ -408,11 +413,6 @@ section {
   margin: 0 auto;
 }
 
-.about img {
-  width: 300px;
-  border-radius: 10%;
-  margin-top: 20px;
-}
 
 .about h4 a {
   color: #3b3b3b !important; /* overrides browser default blue link color */
@@ -675,16 +675,28 @@ section {
   font-weight: 700;
 }
 
-/* Nudge contact page logo up slightly */
+/* Star logo centered on receipt, between form and thank you */
 .contact-logo-container {
-  margin-top: -0.5em;
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  text-align: center;
+  margin-top: 0;
 }
 
 /* Contact page overlay: start below receipt header, smaller font to fit */
 #contact .overlay-text {
   top: 20%;
-  font-size: 0.78rem;
+  font-size: clamp(0.45rem, 1.04vw, 0.78rem);
   line-height: 1.3;
+  overflow: hidden;
+}
+
+/* Clip dashes and any overflow at the receipt image boundary */
+#contact .image-container {
+  overflow: hidden;
 }
 
 /* ===== RECEIPT FORM ===== */
@@ -704,7 +716,7 @@ section {
 
 .receipt-field label {
   font-family: 'Roboto', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1em;
   color: #22478a;
   font-weight: 700;
   min-width: 4.2em;
@@ -715,7 +727,7 @@ section {
 .receipt-field input,
 .receipt-field textarea {
   font-family: 'Roboto', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1em;
   color: #22478a;
   background: transparent;
   border: none;
@@ -754,7 +766,7 @@ section {
 
 .receipt-submit {
   font-family: 'Roboto', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1em;
   font-weight: 700;
   color: #22478a;
   background: transparent;
@@ -773,7 +785,7 @@ section {
   font-style: italic;
   margin: 0.15em 0 !important;
   min-height: 0.9em;
-  font-size: 0.78rem;
+  font-size: 1em;
 }
 
 /* ===== MOBILE: scale form to match overlay font size ===== */
@@ -998,7 +1010,7 @@ section {
   }
 
   .about h2 {
-    padding: 0 20px 30px 20px !important;
+    padding: 0 20px 30px 20px;
   }
 
   .about-section {
@@ -1116,9 +1128,8 @@ section {
 }
 /* ===== CREATIVE ABOUT PAGE REDESIGN ===== */
 
-/* Larger typography — !important overrides the earlier .about h2 rule in SECTIONS */
 .about h2 {
-  font-size: 36px !important;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
@@ -1131,7 +1142,7 @@ section {
 }
 
 .about h4 {
-  font-size: 24px !important; /* overrides earlier .about h4 or general h4 sizing */
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 1.2em;
 }
@@ -1144,7 +1155,7 @@ section {
 /* Hero Facts Section - Photo LEFT, Text RIGHT (like first image) */
 .facts-hero-section {
   background: #FFFFFF;
-  padding: 60px 0 !important;
+  padding: 60px 0;
   margin: 0;
   position: relative; /* anchor for reparented draggable symbols */
 }
@@ -1160,7 +1171,7 @@ section {
 
 /* Center section content on about page */
 .about .section-content {
-  margin: 0 auto !important;
+  margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
   text-align: center;
@@ -1198,8 +1209,8 @@ section {
 }
 
 .hero-photo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.20);
 }
 
 .hero-text-column {
@@ -1225,9 +1236,9 @@ section {
 
 /* Education Section - align text properly */
 .education-section {
-  background: #f7f8fc;
+  background: #FFFFFF;
   border-top: 1px solid #e8ecf4;
-  padding: 60px 20px !important;
+  padding: 60px 20px;
 }
 
 .education-section .section-content {
@@ -1250,9 +1261,9 @@ section {
 
 /* Interests Section */
 .interests-section {
-  background: #f7f8fc;
+  background: #FFFFFF;
   border-top: 1px solid #e8ecf4;
-  padding: 60px 20px !important;
+  padding: 60px 20px;
 }
 
 .interests-section h4 {
@@ -1268,8 +1279,8 @@ section {
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 600px) {
   .about h2 {
-    font-size: 28px !important; /* mobile override of the 36px !important set in CREATIVE ABOUT PAGE REDESIGN */
-    padding: 0 20px 30px 20px !important; /* overrides .about h2 { padding: 0 40px 40px 40px } */
+    font-size: 28px;
+    padding: 0 20px 30px 20px;
     text-align: center;
   }
 
@@ -1278,7 +1289,7 @@ section {
   }
 
   .about h4 {
-    font-size: 20px !important; /* mobile override of the 24px !important set in CREATIVE ABOUT PAGE REDESIGN */
+    font-size: 20px;
   }
 
   .about p {
@@ -1287,7 +1298,7 @@ section {
 
   /* Hero mobile - stack photo above text */
   .facts-hero-section {
-    padding: 0 0 40px 0 !important;
+    padding: 0 0 40px 0;
   }
 
   .facts-hero-section .section-content {
@@ -1334,17 +1345,16 @@ section {
 
   .education-section,
   .interests-section {
-    padding: 40px 20px !important;
+    padding: 40px 20px;
   }
 }
 
 /* ===== ABOUT PAGE REDESIGN v2 ===== */
 
-/* Override .about img { width: 300px } for the hero photo — same specificity fix as sw-badge-img */
 .about .hero-photo {
-  width: 100% !important;    /* overrides .about img { width: 300px } */
-  border-radius: 0 !important; /* overrides .about img { border-radius: 10% } — polaroid frame has no rounding */
-  margin-top: 0 !important;  /* overrides .about img { margin-top: 20px } */
+  width: 100%;
+  border-radius: 0;
+  margin-top: 0;
   box-shadow: none; /* shadow lives on the card, not the image */
 }
 
@@ -1366,8 +1376,9 @@ section {
 }
 
 /* Section label headings — lowercase, left navy border rule */
-.about-label {
-  font-size: 13px !important; /* overrides .about h4 { font-size: 24px !important } */
+/* .about .about-label has specificity (0,2,0) > .about h4 (0,1,1), so no !important needed */
+.about .about-label {
+  font-size: 16px;
   font-weight: 700;
   color: #22478a;
   border-left: 3px solid #22478a;
@@ -1628,7 +1639,7 @@ section {
 .course-tag:hover {
   background: #dce8ff;
   color: #22478a;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* Interests word cloud */
@@ -1663,7 +1674,7 @@ section {
 .cloud-word:hover {
   color: #386adf !important;
   animation-play-state: paused;
-  transform: scale(1.13);
+  transform: translateY(-3px);
 }
 
 /* ===== ABOUT REDESIGN v2 — MOBILE ===== */
@@ -1678,8 +1689,8 @@ section {
     line-height: 1.7;
   }
 
-  .about-label {
-    font-size: 12px !important; /* mobile override of 13px above */
+  .about .about-label {
+    font-size: 14px;
   }
 
   .language-list {
@@ -1706,6 +1717,25 @@ section {
     font-size: 13px;
     padding: 4px 12px;
   }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  padding: 32px 40px;
+  border-top: 1px solid #e8ecf4;
+  text-align: center;
+  font-size: 13px;
+  color: #9aaccc;
+  letter-spacing: 0.3px;
+}
+
+.site-footer a {
+  color: #9aaccc;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #386adf;
 }
 
 /* ===== SCROLL REVEAL ===== */
@@ -1767,10 +1797,15 @@ section {
   bottom: 32px;
   left: 40px;
   color: #FFFFFF;
-  font-size: 32px;
+  font-size: 42px;
   font-weight: 700;
   letter-spacing: 2px;
   z-index: 1;
+}
+
+.hover-word {
+  display: inline-block;
+  cursor: default;
 }
 
 
@@ -1819,10 +1854,11 @@ section {
   letter-spacing: -3px;
 }
 
-/* * bottom-left — slightly overlaid onto the photo */
+/* * bottom-right */
 .polaroid-sym-bl {
   bottom: 52px;
-  left: -18px; /* moved back left, half on/off */
+  right: -18px;
+  left: auto;
   font-size: 56px;
   opacity: 1;
   transform: rotate(-8deg);
@@ -1838,6 +1874,7 @@ section {
   height: 100%;
   pointer-events: none; /* container is invisible — children opt-in below */
   user-select: none;
+  z-index: 10;
 }
 
 /* Allow individual symbols to receive mouse/touch events for dragging */
@@ -1850,19 +1887,20 @@ section {
   font-weight: 700;
   line-height: 1;
   transition: transform 0.2s ease;
+  z-index: 10;
 }
 
-.hero-sym-amp:hover  { transform: rotate(-6deg)  translateY(-6px); }
-.hero-sym-hash:hover { transform: rotate(10deg)  translateY(-6px); }
-.hero-sym-at:hover   { transform: rotate(4deg)   translateY(-6px); }
+.hero-sym-amp:hover  { transform: rotate(-6deg)  translateY(calc(var(--py, 0px) - 6px)); }
+.hero-sym-hash:hover { transform: rotate(10deg)  translateY(calc(var(--py, 0px) - 6px)); }
+.hero-sym-at:hover   { transform: rotate(4deg)   translateY(calc(var(--py, 0px) - 6px)); }
 
 /* & — top left, slight counter-clockwise tilt */
 .hero-sym-amp {
   font-size: 80px;
-  top: 8%;
-  left: 10px;
+  top: 4%;
+  left: -20px;
   opacity: 1;
-  transform: rotate(-6deg);
+  transform: rotate(-6deg) translateY(var(--py, 0px));
   color: #dfdff2;
 }
 
@@ -1870,9 +1908,9 @@ section {
 .hero-sym-hash {
   font-size: 58px;
   top: 44%;
-  left: 70px;
+  left: -10px;
   opacity: 1;
-  transform: rotate(10deg);
+  transform: rotate(10deg) translateY(var(--py, 0px));
   color: #cdd7f8;
 }
 
@@ -1882,7 +1920,7 @@ section {
   bottom: 8%;
   left: 5px;
   opacity: 1;
-  transform: rotate(4deg);
+  transform: rotate(4deg) translateY(var(--py, 0px));
   color: #cdd7f8;
 }
 
@@ -1948,17 +1986,52 @@ section {
 
 /* ===== ABOUT PAGE PLAYFUL REDESIGN ===== */
 
-/* Photo column — polaroid card */
+/* Wrapper holding both polaroids side by side */
+.hero-photos-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  justify-self: center;
+  margin-left: -60px;
+}
+
+/* Photo column — polaroid card (NY portrait) */
 .hero-photo-column {
-  background: #FFFFFF; /* polaroid is always white paper */
+  background: #FFFFFF;
   border-radius: 3px;
-  padding: 12px 12px 40px 12px; /* extra bottom padding = polaroid caption space */
+  padding: 14px 14px 28px 14px;
   box-sizing: border-box;
   box-shadow: 0 6px 24px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.08);
   transform: rotate(-1.5deg);
-  max-width: 300px;
-  margin: 0 auto 0 auto; /* centered within its grid column */
-  justify-self: center; /* explicitly center in the grid column */
+  width: 280px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Seattle horizontal polaroid */
+.polaroid-seattle {
+  background: #FFFFFF;
+  border-radius: 3px;
+  padding: 12px 12px 26px 12px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.08);
+  transform: rotate(1.8deg);
+  width: 340px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  margin-left: -50px;
+}
+
+.polaroid-seattle .hero-photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+  height: auto;
 }
 
 /* Greeting above photo (Issue 2) */
@@ -1970,16 +2043,15 @@ section {
   letter-spacing: 0.3px;
 }
 
-/* "all about (me)" header above name — .about p overrides bare class, need higher specificity */
+/* "all about:" eyebrow label — introduces the name below */
 .about p.about-intro-header {
-  font-size: 35px;
-  font-weight: 400; /* not bold */
+  font-size: 22px;
+  font-weight: 400;
   color: #3b3b3b;
-  margin: 0 0 0.2em 0;
-  line-height: 1.2;
-  letter-spacing: -0.3px;
-  text-align: right;
-  padding-right: 48px; /* keep clear of the sparkles on the right edge */
+  margin: 0 0 0.4em 0;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  text-align: left;
 }
 
 /* Large name treatment (Issue 3) */
@@ -2087,17 +2159,33 @@ section {
   .polaroid-sym-bl {
     display: block;
     bottom: 44px;
-    left: -10px;
+    right: -10px;
+    left: auto;
     font-size: 32px;
   }
   .about-banner {
     height: 320px;
   }
 
+  .hero-photos-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
   .hero-photo-column {
-    padding: 10px 10px 32px 10px;
+    padding: 10px 10px 24px 10px;
     border-radius: 2px;
-    transform: none; /* no tilt on mobile — too narrow to look good */
+    transform: none;
+    width: 280px;
+    margin-left: 0;
+  }
+
+  .polaroid-seattle {
+    transform: none;
+    width: 280px;
+    padding: 10px 10px 22px 10px;
+    margin-left: 0;
   }
 
   .polaroid-caption {

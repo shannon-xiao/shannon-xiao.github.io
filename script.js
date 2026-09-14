@@ -17,6 +17,7 @@
 
   const sketch = (p) => {
     let particles = [];
+    let ringX, ringY; // lagging ring position
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -28,7 +29,31 @@
       canvas.style('left', '0');
       p.textFont('monospace');
       p.textSize(13);
+      p.frameRate(60);
+      ringX = p.windowWidth / 2;
+      ringY = p.windowHeight / 2;
     };
+
+    // Rounded 4-point star using Catmull-Rom spline
+    function drawStar4(x, y, outer, inner) {
+      const verts = [];
+      for (let i = 0; i < 8; i++) {
+        const angle = (i * Math.PI / 4) - Math.PI / 2;
+        const r = i % 2 === 0 ? outer : inner;
+        verts.push([x + Math.cos(angle) * r, y + Math.sin(angle) * r]);
+      }
+      const n = verts.length;
+      p.curveTightness(0);
+      p.beginShape();
+      // Wrap last + first two vertices so Catmull-Rom closes smoothly
+      p.curveVertex(verts[n - 1][0], verts[n - 1][1]);
+      for (let i = 0; i < n; i++) {
+        p.curveVertex(verts[i][0], verts[i][1]);
+      }
+      p.curveVertex(verts[0][0], verts[0][1]);
+      p.curveVertex(verts[1][0], verts[1][1]);
+      p.endShape();
+    }
 
     p.windowResized = () => {
       p.resizeCanvas(p.windowWidth, p.windowHeight);
@@ -50,6 +75,26 @@
 
     p.draw = () => {
       p.clear();
+
+      // Trailing star cursor
+      const cx = p.mouseX, cy = p.mouseY;
+      const dt = Math.min(p.deltaTime / 16.67, 3); // normalise to 60fps
+      const LERP = 1 - Math.pow(0.88, dt);         // frame-rate independent easing
+      ringX += (cx - ringX) * LERP;
+      ringY += (cy - ringY) * LERP;
+
+      // Outer 4-point star — lags behind
+      p.noFill();
+      p.stroke(34, 71, 138, 170);
+      p.strokeWeight(1.2);
+      drawStar4(ringX, ringY, 17, 7);
+
+      // Inner dot — snaps to cursor
+      p.noStroke();
+      p.fill(34, 71, 138, 230);
+      p.ellipse(cx, cy, 5, 5);
+
+      // Particle trail
       p.noStroke();
       for (let i = particles.length - 1; i >= 0; i--) {
         const pt = particles[i];

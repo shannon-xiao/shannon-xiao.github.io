@@ -23,20 +23,20 @@
 
 <!-- Navigation Bar -->
 <div class="navbar">
-  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <a href="index.html" class="logo">shannon-xiao</a>
   <div class="nav-links">
     <a href="index.html" class="home-icon">🧾</a>
     <a href="about.html">about,</a>
     <a href="folio.html">folio,</a>
     <div class="dropdown">
-      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <a href="projects.html" class="dropdown-toggle">work,</a>
       <div class="dropdown-menu">
         <a href="projects.html#client">client</a>
         <a href="projects.html#research">research</a>
         <a href="projects.html#other">other</a>
       </div>
     </div>
-    <a href="contact.html">contact.</a>
+    <a href="contact.html" class="active">contact.</a>
   </div>
 </div>
 
@@ -47,18 +47,18 @@
     <div class="overlay-text">
 
       <p class="center-align">-------------------------------------------------------------------------</p>
-      <p class="center-align receipt-bold">contact me</p>
+      <p class="center-align receipt-bold">Contact Me</p>
       <p class="center-align">-------------------------------------------------------------------------</p>
 
       <p class="center-align contact-label">
-        <a href="mailto:shannonxiao@berkeley.edu" class="receipt-contact-link">email me</a>
+        <a href="mailto:shannonxiao@berkeley.edu" class="receipt-contact-link">Email Me</a>
       </p>
       <p class="center-align contact-detail">shannonxiao [at] berkeley [dot] edu</p>
 
       <p class="center-align contact-label">
-        <a href="https://www.linkedin.com/in/shannonxiao/" class="receipt-contact-link">connect with me</a>
+        <a href="https://www.linkedin.com/in/shannonxiao/" class="receipt-contact-link">Connect With Me</a>
       </p>
-      <p class="center-align contact-detail">linkedin: shannonxiao</p>
+      <p class="center-align contact-detail">LinkedIn: shannonxiao</p>
 
       <p class="center-align">-------------------------------------------------------------------------</p>
 
@@ -76,32 +76,32 @@
         id="contact-form"
       >
         <div class="receipt-field">
-          <label for="name">name:</label>
-          <input type="text" id="name" name="name" placeholder="your name" required autocomplete="off">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="off">
         </div>
 
         <div class="receipt-field">
-          <label for="email">email:</label>
+          <label for="email">Email:</label>
           <input type="email" id="email" name="email" placeholder="your_email [at] web [dot] domain" required autocomplete="off">
         </div>
 
         <div class="receipt-field">
-          <label for="message">message:</label>
-          <textarea id="message" name="message" placeholder="your message here...!!!" rows="2" required></textarea>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" placeholder="Your message here...!!!" rows="2" required></textarea>
         </div>
 
         <div class="receipt-submit-row">
-          <button type="submit" class="receipt-submit">send &#8594;</button>
+          <button type="submit" class="receipt-submit">Send &#8594;</button>
         </div>
       </form>
 
       <!-- Status message shown after submit -->
       <p class="center-align receipt-form-status" id="form-status"></p>
 
-      <div class="logo-container contact-logo-container">
-        <img src="LOGO.png" alt="Logo" class="receipt-logo" width="500" height="500">
-      </div>
+    </div>
 
+    <div class="logo-container contact-logo-container">
+      <img src="LOGO.png" alt="Logo" class="receipt-logo" width="500" height="500">
     </div>
   </div>
 </section>
@@ -124,7 +124,7 @@
         form.style.transition = 'opacity 0.4s ease';
         form.style.opacity = '0';
         form.style.display = 'block';
-        status.textContent = '✓ message sent. thank you!';
+        status.textContent = '✓ Message sent. Thank you!';
         status.style.fontWeight = '700';
 
         // After 3 seconds, fade form back in and clear fields
@@ -134,14 +134,18 @@
           form.style.opacity = '1';
         }, 3000);
       } else {
-        status.textContent = '× something went wrong. try emailing directly.';
+        status.textContent = '× Something went wrong. Try emailing directly.';
       }
     } catch {
-      status.textContent = '× network error. try emailing directly.';
+      status.textContent = '× Network error. Try emailing directly.';
     }
   });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
 <script src="script.js"></script>
+
+<footer class="site-footer">
+  shannonxiao &middot; uc berkeley &middot; <a href="mailto:shannonxiao@berkeley.edu">shannonxiao@berkeley.edu</a>
+</footer>
 </body>
 </html>

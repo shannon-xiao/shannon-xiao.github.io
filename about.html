@@ -102,18 +102,29 @@
         gap: 12px;
       }
     }
+
+    /* Word cloud: per-word size and color */
+    .cw-illustration  { font-size: 31px; color: #22478a; }
+    .cw-flute         { font-size: 13px; color: #9aaccc; }
+    .cw-photography   { font-size: 25px; color: #386adf; }
+    .cw-arts          { font-size: 16px; color: #6b7c93; }
+    .cw-baking        { font-size: 22px; color: #4a6da0; }
+    .cw-badminton     { font-size: 14px; color: #7a9fd4; }
+    .cw-cardgames     { font-size: 19px; color: #22478a; }
+    .cw-snowboarding  { font-size: 21px; color: #6b7c93; }
+    .cw-set           { font-size: 15px; color: #4a6da0; }
   </style>
 </head>
 <body>
 
 <div class="navbar">
-  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <a href="index.html" class="logo">shannon-xiao</a>
   <div class="nav-links">
     <a href="index.html" class="home-icon">🧾</a>
-    <a href="about.html">about,</a>
+    <a href="about.html" class="active">about,</a>
     <a href="folio.html">folio,</a>
     <div class="dropdown">
-      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <a href="projects.html" class="dropdown-toggle">work,</a>
       <div class="dropdown-menu">
         <a href="projects.html#client">client</a>
         <a href="projects.html#research">research</a>
@@ -132,7 +143,7 @@
        2. Change background-image in the inline style to: url('your-banner-filename.jpg')
        3. Remove or keep the overlay div as desired -->
   <div class="about-banner" style="background-image: url('kamakura-banner.jpg');">
-    <div class="banner-overlay-text">student. creator. explorer.</div>
+    <div class="banner-overlay-text"><span class="hover-word">student.</span> <span class="hover-word">creator.</span> <span class="hover-word">explorer.</span></div>
     <button class="banner-scroll-btn" aria-label="Scroll to about section">&#8964;</button>
   </div>
 
@@ -148,14 +159,17 @@
           <span class="hero-sym hero-sym-at">@</span>
         </div>
 
-        <div class="hero-photo-column">
-          <span class="polaroid-sym polaroid-sym-tr" aria-hidden="true">&lt;&gt;</span>
-          <img src="about-me-images/me at times square.jpg" alt="Shannon at Times Square" class="hero-photo" width="1536" height="2048" loading="lazy">
-          <span class="polaroid-sym polaroid-sym-bl" aria-hidden="true">*</span>
-          <p class="polaroid-caption">Times Square,<br>New York ☆</p>
-          <div class="polaroid-fact-card">
-            <p class="fact-date">090807</p>
-            <p class="fact-location">bay area, ca.</p>
+        <div class="hero-photos-group">
+          <div class="hero-photo-column">
+            <span class="polaroid-sym polaroid-sym-tr" aria-hidden="true">&lt;&gt;</span>
+            <img src="about-me-images/me at times square.jpg" alt="Shannon at Times Square" class="hero-photo" width="1536" height="2048" loading="lazy">
+            <span class="polaroid-sym polaroid-sym-bl" aria-hidden="true">*</span>
+            <p class="polaroid-caption">Times Square,<br>New York</p>
+          </div>
+
+          <div class="polaroid-seattle">
+            <img src="about-me-images/me in seattle gasworks.JPG" alt="Shannon at Gas Works Park" class="hero-photo" loading="lazy">
+            <p class="polaroid-caption">Gas Works,<br>Seattle</p>
           </div>
         </div>
 
@@ -164,7 +178,7 @@
           <span class="sparkle sparkle-2">✦</span>
           <span class="sparkle sparkle-3">✦</span>
           <p class="about-intro-header">all about:</p>
-          <h3 class="about-name">shannon yiheng xiao (肖)</h3>
+          <h3 class="about-name">shannon yiheng xiao (shannon-xiao)</h3>
           <p class="about-tagline">data science + analytics · bay area · co'29</p>
           <div class="about-intro-text">
             <p>Hi! My name is Shannon, an undergrad student at UC Berkeley interested in topics relevant to consumer products, technology, and finance.</p>
@@ -224,15 +238,15 @@
 
         <div class="about-col-content">
           <div class="word-cloud">
-            <span class="cloud-word" style="font-size: 31px; color: #22478a;">illustration</span>
-            <span class="cloud-word" style="font-size: 13px; color: #9aaccc;">flute</span>
-            <span class="cloud-word" style="font-size: 25px; color: #386adf;">photography (sx-230)</span>
-            <span class="cloud-word" style="font-size: 16px; color: #6b7c93;">the arts</span>
-            <span class="cloud-word" style="font-size: 22px; color: #4a6da0;">baking (basque cheesecakes)</span>
-            <span class="cloud-word" style="font-size: 14px; color: #7a9fd4;">badminton</span>
-            <span class="cloud-word" style="font-size: 19px; color: #22478a;">card games (斗地主)</span>
-            <span class="cloud-word" style="font-size: 21px; color: #6b7c93;">snowboarding</span>
-            <span class="cloud-word" style="font-size: 15px; color: #4a6da0;">set (with friends)</span>
+            <span class="cloud-word cw-illustration">illustration</span>
+            <span class="cloud-word cw-flute">flute</span>
+            <span class="cloud-word cw-photography">photography (sx-230)</span>
+            <span class="cloud-word cw-arts">the arts</span>
+            <span class="cloud-word cw-baking">baking (basque cheesecakes)</span>
+            <span class="cloud-word cw-badminton">badminton</span>
+            <span class="cloud-word cw-cardgames">card games (斗地主)</span>
+            <span class="cloud-word cw-snowboarding">snowboarding</span>
+            <span class="cloud-word cw-set">set (with friends)</span>
           </div>
         </div>
 
@@ -242,6 +256,10 @@
 
 
 </section>
+
+<footer class="site-footer">
+  shannonxiao &middot; uc berkeley &middot; <a href="mailto:shannonxiao@berkeley.edu">shannonxiao@berkeley.edu</a>
+</footer>
 
 <script>
   // Updates Shannon's local time (America/Los_Angeles) and the visitor's local time every second.
@@ -342,316 +360,7 @@
   });
 </script>
 
-<script>
-  /* Draggable symbols + fact card */
-  (function () {
-    var heroSection    = document.querySelector('.facts-hero-section');
-    var textColumn     = document.querySelector('.hero-text-column');
-    var polaroidColumn = document.querySelector('.hero-photo-column');
 
-    /* ── 1. Reparent the 5 symbols into heroSection at page load ──
-       This moves them out of the rotated polaroid once and for all,
-       preserving their exact visual position. They stay there forever
-       (or until reset), so drag logic never needs to re-parent. */
-    var symbolSelectors = [
-      '.hero-sym-amp', '.hero-sym-hash', '.hero-sym-at',
-      '.polaroid-sym-tr', '.polaroid-sym-bl'
-    ];
-    var origParents = {};
-
-    symbolSelectors.forEach(function (sel) {
-      var el = document.querySelector(sel);
-      if (!el) return;
-      var r   = el.getBoundingClientRect();
-      var sec = heroSection.getBoundingClientRect();
-      origParents[sel] = el.parentElement;
-      heroSection.appendChild(el);
-      el.style.position = 'absolute';
-      el.style.left     = (r.left - sec.left) + 'px';
-      el.style.top      = (r.top  - sec.top)  + 'px';
-      el.style.right    = 'auto';
-      el.style.bottom   = 'auto';
-    });
-
-    /* ── 2. Constraint helpers ── */
-    /* Left zone: full hero, capped at text column's left edge */
-    function getLeftZone() {
-      var sec = heroSection.getBoundingClientRect();
-      var txt = textColumn.getBoundingClientRect();
-      return { left: 0, top: 0,
-               right:  txt.left  - sec.left,
-               bottom: sec.height };
-    }
-    /* Polaroid zone for fact card */
-    function getPolaroidZone() {
-      var sec = heroSection.getBoundingClientRect();
-      var pol = polaroidColumn.getBoundingClientRect();
-      return { left:   pol.left   - sec.left,
-               top:    pol.top    - sec.top,
-               right:  pol.right  - sec.left,
-               bottom: pol.bottom - sec.top };
-    }
-
-    /* ── 3. Build item list ── */
-    var items = symbolSelectors.map(function (sel) {
-      return { el: document.querySelector(sel), getZone: getLeftZone, parent: heroSection };
-    });
-    var factCard = document.querySelector('.polaroid-fact-card');
-    if (factCard) {
-      items.push({ el: factCard, getZone: getPolaroidZone, parent: polaroidColumn });
-    }
-    items = items.filter(function (it) { return it.el; });
-
-    /* ── 4. Reset ── */
-    function resetAll() {
-      symbolSelectors.forEach(function (sel) {
-        var el = document.querySelector(sel);
-        if (!el) return;
-        var orig = origParents[sel];
-        if (orig) { orig.appendChild(el); el.style.position = ''; }
-        el.style.left = ''; el.style.top = '';
-        el.style.right = ''; el.style.bottom = '';
-        el.style.zIndex = '';
-      });
-      if (factCard) {
-        factCard.style.left = ''; factCard.style.top = '';
-        factCard.style.right = ''; factCard.style.bottom = '';
-        factCard.style.zIndex = '';
-        factCard._wasDragged = false;
-      }
-      /* Re-run init to restore reparented symbols to heroSection with correct coords */
-      symbolSelectors.forEach(function (sel) {
-        var el = document.querySelector(sel);
-        if (!el || el.parentElement === heroSection) return;
-        var r   = el.getBoundingClientRect();
-        var sec = heroSection.getBoundingClientRect();
-        heroSection.appendChild(el);
-        el.style.position = 'absolute';
-        el.style.left     = (r.left - sec.left) + 'px';
-        el.style.top      = (r.top  - sec.top)  + 'px';
-        el.style.right    = 'auto';
-        el.style.bottom   = 'auto';
-      });
-    }
-
-    if (factCard) {
-      factCard.addEventListener('click', function () {
-        if (!factCard._wasDragged) resetAll();
-      });
-    }
-
-    /* ── 5. Drag ── */
-    items.forEach(function (it) {
-      var el = it.el;
-      var startMX, startMY, startLeft, startTop;
-      var active = false, moved = false;
-
-      el.style.cursor = 'grab';
-
-      el.addEventListener('mousedown', function (e) {
-        e.preventDefault();
-        var r = el.getBoundingClientRect();
-        var p = it.parent.getBoundingClientRect();
-        startMX   = e.clientX;
-        startMY   = e.clientY;
-        startLeft = r.left - p.left;
-        startTop  = r.top  - p.top;
-        active    = true;
-        moved     = false;
-        el._wasDragged = false;
-        el.style.cursor = 'grabbing';
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup',   onUp);
-      });
-
-      function onMove(e) {
-        if (!active) return;
-        var dx = e.clientX - startMX;
-        var dy = e.clientY - startMY;
-        if (!moved && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
-        if (!moved) {
-          /* Anchor element precisely before first move */
-          el.style.left   = startLeft + 'px';
-          el.style.top    = startTop  + 'px';
-          el.style.right  = 'auto';
-          el.style.bottom = 'auto';
-          el.style.zIndex = '50';
-          moved = true;
-        }
-        el._wasDragged = true;
-        var z   = it.getZone();
-        var elW = el.offsetWidth;
-        var elH = el.offsetHeight;
-        el.style.left = Math.max(z.left, Math.min(startLeft + dx, z.right  - elW)) + 'px';
-        el.style.top  = Math.max(z.top,  Math.min(startTop  + dy, z.bottom - elH)) + 'px';
-      }
-
-      function onUp() {
-        active = false;
-        el.style.cursor = 'grab';
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseup',   onUp);
-      }
-
-      /* Touch */
-      el.addEventListener('touchstart', function (e) {
-        var t = e.touches[0];
-        var r = el.getBoundingClientRect();
-        var p = it.parent.getBoundingClientRect();
-        startMX   = t.clientX; startMY = t.clientY;
-        startLeft = r.left - p.left; startTop = r.top - p.top;
-        active = true; moved = false; el._wasDragged = false;
-      }, { passive: true });
-      el.addEventListener('touchmove', function (e) {
-        if (!active) return;
-        var t  = e.touches[0];
-        var dx = t.clientX - startMX;
-        var dy = t.clientY - startMY;
-        if (!moved && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
-        if (!moved) {
-          el.style.left = startLeft + 'px'; el.style.top = startTop + 'px';
-          el.style.right = 'auto'; el.style.bottom = 'auto';
-          el.style.zIndex = '50'; moved = true;
-        }
-        el._wasDragged = true;
-        var z   = it.getZone();
-        var elW = el.offsetWidth; var elH = el.offsetHeight;
-        el.style.left = Math.max(z.left, Math.min(startLeft + dx, z.right  - elW)) + 'px';
-        el.style.top  = Math.max(z.top,  Math.min(startTop  + dy, z.bottom - elH)) + 'px';
-        e.preventDefault();
-      }, { passive: false });
-      el.addEventListener('touchend', function () { active = false; el.style.cursor = 'grab'; });
-    });
-  })();
-</script>
-
-<script>
-/* ── Symbol physics: sine-wave drift + cursor scatter + elastic walls ── */
-(function () {
-  var heroSection = document.querySelector('.facts-hero-section');
-  var textColumn  = document.querySelector('.hero-text-column');
-  if (!heroSection || !textColumn) return;
-
-  var sels = ['.hero-sym-amp', '.hero-sym-hash', '.hero-sym-at', '.polaroid-sym-tr', '.polaroid-sym-bl'];
-  var bodies = [];
-  var mx = -9999, my = -9999, cursorSpeed = 0;
-
-  document.addEventListener('mousemove', function (e) {
-    var r   = heroSection.getBoundingClientRect();
-    var nmx = e.clientX - r.left;
-    var nmy = e.clientY - r.top;
-    var cdx = nmx - mx;
-    var cdy = nmy - my;
-    // exponential smoothing on cursor speed so repulsion ramps in gradually
-    cursorSpeed = cursorSpeed * 0.7 + Math.sqrt(cdx * cdx + cdy * cdy) * 0.3;
-    mx = nmx; my = nmy;
-  });
-
-  sels.forEach(function (sel) {
-    var el = document.querySelector(sel);
-    if (!el) return;
-
-    var body = {
-      el:     el,
-      x:      parseFloat(el.style.left) || 0,
-      y:      parseFloat(el.style.top)  || 0,
-      vx:     (Math.random() - 0.5) * 1.2,
-      vy:     (Math.random() - 0.5) * 1.2,
-      phaseX: Math.random() * Math.PI * 2,
-      phaseY: Math.random() * Math.PI * 2,
-      freqX:  0.18 + Math.random() * 0.22,
-      freqY:  0.15 + Math.random() * 0.22,
-      pinned: false
-    };
-
-    el.addEventListener('mousedown', function () { body.pinned = true; });
-    el.addEventListener('touchstart', function () { body.pinned = true; }, { passive: true });
-
-    document.addEventListener('mouseup', function () {
-      if (!body.pinned) return;
-      body.pinned = false;
-      body.x  = parseFloat(el.style.left) || body.x;
-      body.y  = parseFloat(el.style.top)  || body.y;
-      body.vx = (Math.random() - 0.5) * 3;
-      body.vy = (Math.random() - 0.5) * 3;
-    });
-    el.addEventListener('touchend', function () {
-      body.pinned = false;
-      body.x  = parseFloat(el.style.left) || body.x;
-      body.y  = parseFloat(el.style.top)  || body.y;
-      body.vx = 0; body.vy = 0;
-    });
-
-    bodies.push(body);
-  });
-
-  var DAMPING  = 0.982;
-  var DRIFT    = 0.03;
-  var BOUNCE   = 0.55;
-  var REPEL_R  = 110;
-  var REPEL_F  = 4.5;
-  var MAX_SPEED = 5;
-
-  function tick() {
-    var t    = Date.now() / 1000;
-    var sec  = heroSection.getBoundingClientRect();
-    var txt  = textColumn.getBoundingClientRect();
-    var maxX = txt.left - sec.left;
-    var maxY = sec.height;
-    // scale repulsion by cursor speed — still cursor = no push, so dragging works
-    var repelScale = Math.min(cursorSpeed / 8, 1);
-
-    bodies.forEach(function (b) {
-      if (b.pinned) return;
-
-      // Gentle organic drift via independent sine waves per symbol
-      b.vx += Math.sin(t * b.freqX + b.phaseX) * DRIFT;
-      b.vy += Math.cos(t * b.freqY + b.phaseY) * DRIFT;
-
-      // Cursor scatter — only when cursor is moving
-      if (repelScale > 0.05) {
-        var dx = b.x - mx;
-        var dy = b.y - my;
-        var d2 = dx * dx + dy * dy;
-        if (d2 < REPEL_R * REPEL_R && d2 > 1) {
-          var dist = Math.sqrt(d2);
-          var f = (1 - dist / REPEL_R) * REPEL_F * repelScale;
-          b.vx += (dx / dist) * f;
-          b.vy += (dy / dist) * f;
-        }
-      }
-
-      b.vx *= DAMPING;
-      b.vy *= DAMPING;
-
-      // Clamp speed to prevent jolts
-      var speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
-      if (speed > MAX_SPEED) {
-        b.vx = (b.vx / speed) * MAX_SPEED;
-        b.vy = (b.vy / speed) * MAX_SPEED;
-      }
-
-      b.x += b.vx;
-      b.y += b.vy;
-
-      var w = b.el.offsetWidth;
-      var h = b.el.offsetHeight;
-
-      if (b.x < 0)        { b.x = 0;        b.vx =  Math.abs(b.vx) * BOUNCE; }
-      if (b.x > maxX - w) { b.x = maxX - w; b.vx = -Math.abs(b.vx) * BOUNCE; }
-      if (b.y < 0)        { b.y = 0;         b.vy =  Math.abs(b.vy) * BOUNCE; }
-      if (b.y > maxY - h) { b.y = maxY - h;  b.vy = -Math.abs(b.vy) * BOUNCE; }
-
-      b.el.style.left = b.x + 'px';
-      b.el.style.top  = b.y + 'px';
-    });
-
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-</script>
 
 <script>
   document.querySelectorAll('.cloud-word').forEach(function (w) {
@@ -663,7 +372,83 @@
     w.style.setProperty('--float-dist',  dist  + 'px');
   });
 </script>
+<script>
+  (function () {
+    var banner = document.querySelector('.banner-overlay-text');
+    if (!banner) return;
+
+    var MAX_LIFT = 12;
+    var FALLOFF  = 80;   // tighter radius so adjacent letters ripple distinctly
+    var LERP     = 0.14; // smoothing factor (lower = lazier/smoother)
+
+    // Split each .hover-word into per-letter spans, preserving spaces between words
+    var words = Array.from(banner.querySelectorAll('.hover-word'));
+    var letters = [];
+    words.forEach(function (word) {
+      var text = word.textContent;
+      word.textContent = '';
+      text.split('').forEach(function (ch) {
+        var s = document.createElement('span');
+        s.textContent = ch;
+        s.style.display = 'inline-block';
+        s.style.transition = 'none'; // JS lerp handles smoothing
+        word.appendChild(s);
+        letters.push(s);
+      });
+    });
+
+    // Current and target lifts per letter
+    var current = letters.map(function () { return 0; });
+    var target  = letters.map(function () { return 0; });
+    var mouseX  = null;
+    var active  = false;
+
+    function tick() {
+      var changed = false;
+      letters.forEach(function (s, i) {
+        var rect = s.getBoundingClientRect();
+        var cx   = rect.left + rect.width / 2;
+        var dist = mouseX !== null ? Math.abs(mouseX - cx) : Infinity;
+        target[i] = active ? Math.max(0, MAX_LIFT * Math.pow(Math.max(0, 1 - dist / FALLOFF), 1.5)) : 0;
+        var next = current[i] + (target[i] - current[i]) * LERP;
+        if (Math.abs(next - current[i]) > 0.01) { current[i] = next; changed = true; }
+        s.style.transform = 'translateY(-' + current[i].toFixed(2) + 'px)';
+      });
+      requestAnimationFrame(tick);
+    }
+
+    banner.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      active = true;
+    });
+    banner.addEventListener('mouseleave', function () {
+      active = false;
+      mouseX = null;
+    });
+
+    requestAnimationFrame(tick);
+  })();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
 <script src="script.js"></script>
+<script>
+/* Symbol scroll parallax — symbols drift at different speeds as page scrolls */
+(function () {
+  var items = [
+    { el: document.querySelector('.hero-sym-amp'),  speed: 0.12 },
+    { el: document.querySelector('.hero-sym-hash'), speed: 0.07 },
+    { el: document.querySelector('.hero-sym-at'),   speed: 0.16 }
+  ].filter(function (d) { return d.el; });
+
+  if (!items.length) return;
+
+  window.addEventListener('scroll', function () {
+    var scrollY = window.scrollY;
+    items.forEach(function (d) {
+      d.el.style.setProperty('--py', (scrollY * d.speed) + 'px');
+    });
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>

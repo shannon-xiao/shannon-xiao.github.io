@@ -10,67 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    #gate {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      gap: 1.2rem;
-    }
-    #gate p {
-      font-size: 13px;
-      color: #3b3b3b;
-      margin: 0;
-      letter-spacing: 0.5px;
-    }
-    #gate-label {
-      font-size: 11px;
-      color: #888;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: -0.4rem;
-    }
-    #gate-input {
-      border: none;
-      border-bottom: 1.5px solid #3b3b3b;
-      outline: none;
-      font-family: 'Roboto', sans-serif;
-      font-size: 15px;
-      padding: 4px 2px;
-      width: 180px;
-      text-align: center;
-      color: #3b3b3b;
-      background: transparent;
-      letter-spacing: 2px;
-    }
-    #gate-input::placeholder { color: #ccc; letter-spacing: 1px; }
-    #gate-error {
-      font-size: 11px;
-      color: #c0392b;
-      letter-spacing: 0.5px;
-      min-height: 14px;
-    }
-    #gate-submit {
-      background: none;
-      border: 1.5px solid #3b3b3b;
-      font-family: 'Roboto', sans-serif;
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 6px 22px;
-      cursor: pointer;
-      color: #3b3b3b;
-      transition: background 0.15s, color 0.15s;
-    }
-    #gate-submit:hover { background: #3b3b3b; color: #fff; }
-    #projects-content { display: none; }
   </style>
   <style>
     .projects {
@@ -186,6 +125,14 @@
       border-radius: 3px;
     }
 
+    .project-role {
+      font-family: 'Roboto', sans-serif;
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 0.3px;
+      margin-top: -4px;
+    }
+
     @media (max-width: 600px) {
       .projects { padding: 80px 20px 60px; }
       .projects-grid { grid-template-columns: 1fr; }
@@ -195,13 +142,13 @@
 <body>
 
 <div class="navbar">
-  <a href="index.html" class="logo">shannonxyh─☆</a>
+  <a href="index.html" class="logo">shannon-xiao</a>
   <div class="nav-links">
     <a href="index.html" class="home-icon">🧾</a>
     <a href="about.html">about,</a>
     <a href="folio.html">folio,</a>
     <div class="dropdown">
-      <a href="projects.html" class="dropdown-toggle">projects,</a>
+      <a href="projects.html" class="dropdown-toggle active">work,</a>
       <div class="dropdown-menu">
         <a href="projects.html#work">work</a>
         <a href="projects.html#client">client</a>
@@ -213,16 +160,7 @@
   </div>
 </div>
 
-<!-- Password gate -->
-<div id="gate">
-  <p>under construction.</p>
-  <span id="gate-label">password</span>
-  <input id="gate-input" type="password" placeholder="· · · · · ·" autocomplete="off">
-  <span id="gate-error"></span>
-  <button id="gate-submit">enter</button>
-</div>
-
-<div id="projects-content">
+<div id="projects-content" style="display:block">
 
 <section class="projects">
 
@@ -231,12 +169,31 @@
     <p class="projects-section-label">work experience</p>
     <div class="projects-grid">
 
+      <a class="project-card" href="https://www.godaddy.com/" target="_blank" rel="noopener">
+        <div class="project-card-meta">
+          <span class="project-year">2026</span>
+          <span class="project-type">work</span>
+        </div>
+        <span class="project-title">GoDaddy</span>
+        <span class="project-role">Data Analytics Intern</span>
+        <p class="project-desc">Built analytics tool for company Model Context Protocol (MCP), applying Simpson's paradox to isolate true fixed/rate mix contribution for KPI breakdown, across 1–5 segments and 2+ time periods; achieved 90% cycle time reduction with reusable analysis and validation configurations.<br><br>Developed internal query translation tool, streamlining Redshift to Snowflake SQL for migration across cloud data warehouses.<br><br>Automated weekly KPI anomaly detection of renewals and new purchases, engineering two-level, 4 driver waterfall decomposition.</p>
+        <div class="project-tags">
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">Snowflake</span>
+          <span class="project-tag">Redshift</span>
+          <span class="project-tag">analytics</span>
+          <span class="project-tag">KPI</span>
+          <span class="project-tag">Python</span>
+        </div>
+      </a>
+
       <a class="project-card" href="https://www.preqin.com/data/profile/asset/keelinmicro/753169" target="_blank" rel="noopener">
         <div class="project-card-meta">
           <span class="project-year">2025</span>
           <span class="project-type">work</span>
         </div>
         <span class="project-title">Keelin Micro Electronics — Automotive Startup</span>
+        <span class="project-role">Data Analysis Intern</span>
         <p class="project-desc">Business analysis of 4D mmWave LiDAR system architecture (FSD, ADAS). Used R on Federal Reserve datasets to compare FSD stock shares against interest rates and S&P500 using econometrics principles.</p>
         <div class="project-tags">
           <span class="project-tag">R</span>
@@ -252,7 +209,8 @@
           <span class="project-type">work</span>
         </div>
         <span class="project-title">Hydrogen Engineering Research Company LLC — GreenGrade</span>
-        <p class="project-desc">Researched the use of a sustainability indicator index with fuzzy logic by compiling and analyzing datasets of ~180 companies (manually vs. automated) to determine companies' sustainability with a holistic SII on a scale of 0 to 1.<br><br>Developed GreenGrade app UI/UX code, incorporating C++/Dart to quantify sustainability by uploading yearly ESG PDFs. Categorized metrics spanning 15 indicators under 5 sectors: water, waste, air, energy, and financial.</p>
+        <span class="project-role">Software Research Engineer</span>
+        <p class="project-desc">Researched the use of a sustainability indicator index with fuzzy logic by compiling and analyzing datasets of ~180 companies (manually vs. automated) to determine companies' sustainability with a holistic sustainability interval index (SII) on a scale of 0 to 1.<br><br>Developed GreenGrade app UI/UX, utilizing C++ with fuzzy logic breakdown to quantify sustainability from annual ESG reports.<br><br>Categorized metrics used to assess company ESG, spanning 15 indicators under 5 sectors: water, waste, air, energy, and financial.</p>
         <div class="project-tags">
           <span class="project-tag">fuzzy logic</span>
           <span class="project-tag">C++</span>
@@ -277,6 +235,7 @@
           <span class="project-type">client</span>
         </div>
         <span class="project-title">Ring + Blink @ Amazon</span>
+        <span class="project-role">Product Strategy</span>
         <p class="project-desc">Hosted 5 focus groups and collected 500+ survey responses analyzing adoption barriers and user perception for Ring's smart home security products. Translated findings into targeted strategies for the college student segment.</p>
         <div class="project-tags">
           <span class="project-tag">user research</span>
@@ -299,6 +258,7 @@
           <span class="project-type hackathon">hackathon</span>
         </div>
         <span class="project-title">Fluently — UC Berkeley AI Hackathon, San Jose CA</span>
+        <span class="project-role">Software Engineer</span>
         <p class="project-desc">Developed a deterministic, browser-based oral reading fluency tool using Deepgram Nova-3 and a custom Levenshtein alignment engine to classify speech across 6 error categories against DIBELS 8th Edition WCPM thresholds.<br><br>Engineered a Redis system storing 5-dimensional skill vectors per session, running KNN search to surface the optimal next passages.</p>
         <div class="project-tags">
           <span class="project-tag">Deepgram</span>
@@ -315,6 +275,7 @@
           <span class="project-type">research</span>
         </div>
         <span class="project-title">XPRIZE Carbon Removal</span>
+        <span class="project-role">Project Manager / Business Lead</span>
         <p class="project-desc">Executed business, finance, and operations aspects of high school's XPRIZE competition team, uniting 5 cross-functional teams.<br><br>Developed an ocean-based chemical reaction solution utilizing alkaline metals and carbonic acid for long-term carbon sequestration.</p>
         <div class="project-tags">
           <span class="project-tag">carbon capture</span>
@@ -330,6 +291,7 @@
           <span class="project-type">research</span>
         </div>
         <span class="project-title">Modeling LFG → H₂ Gas: UniSim Analysis @ UCLA</span>
+        <span class="project-role">Student Researcher</span>
         <p class="project-desc">Researched converting landfill gas to hydrogen via methane dry reforming and water gas shift reaction. Conducted at UCLA Henry Samueli SOE under Prof. Vasilios Manousiouthakis.</p>
         <div class="project-tags">
           <span class="project-tag">UniSim</span>
@@ -346,20 +308,6 @@
     <p class="projects-section-label">other / personal</p>
     <div class="projects-grid">
 
-      <a class="project-card" href="index.html">
-        <div class="project-card-meta">
-          <span class="project-year">2024–25</span>
-          <span class="project-type">personal</span>
-        </div>
-        <span class="project-title">shannonxyh.com — this website</span>
-        <p class="project-desc">Personal portfolio site built from scratch. Receipt-themed home and contact pages, physics-based interactive elements, and p5.js animations throughout.</p>
-        <div class="project-tags">
-          <span class="project-tag">HTML/CSS</span>
-          <span class="project-tag">JavaScript</span>
-          <span class="project-tag">p5.js</span>
-        </div>
-      </a>
-
     </div>
   </div>
 
@@ -370,37 +318,9 @@
 
 </div><!-- end #projects-content -->
 
-<script>
-  (function () {
-    var PASSWORD = 'yourpassword';
-    var gate    = document.getElementById('gate');
-    var content = document.getElementById('projects-content');
-    var input   = document.getElementById('gate-input');
-    var error   = document.getElementById('gate-error');
-    var btn     = document.getElementById('gate-submit');
 
-    function tryUnlock() {
-      if (input.value === PASSWORD) {
-        gate.style.display = 'none';
-        content.style.display = 'block';
-        sessionStorage.setItem('projects-unlocked', '1');
-      } else {
-        error.textContent = 'incorrect password.';
-        input.value = '';
-        input.focus();
-      }
-    }
-
-    if (sessionStorage.getItem('projects-unlocked') === '1') {
-      gate.style.display = 'none';
-      content.style.display = 'block';
-    }
-
-    btn.addEventListener('click', tryUnlock);
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') tryUnlock();
-    });
-  })();
-</script>
+<footer class="site-footer">
+  shannonxiao &middot; uc berkeley &middot; <a href="mailto:shannonxiao@berkeley.edu">shannonxiao@berkeley.edu</a>
+</footer>
 </body>
 </html>
