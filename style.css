@@ -1,4 +1,4 @@
-/* ===== GLOBAL ===== */
+/* ===== GLOBAL — v2 ===== */
 body {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   margin: 0;
@@ -69,8 +69,68 @@ body::-webkit-scrollbar {
 }
 
 .home-icon {
-  font-size: 18px;
-  margin-right: 10px;
+  font-size: 28px !important;
+  margin-right: 18px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.home-icon:hover { transform: scale(1.2); }
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  transition: background 0.3s ease;
+}
+
+.folder-nav {
+  display: flex;
+  align-items: center;
+}
+
+.folder-nav-btn {
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.folder-nav-btn:hover { transform: scale(1.2); }
+
+.folder-nav-links {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.35s ease, opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+.folder-nav-links.open {
+  max-width: 400px;
+  opacity: 1;
+}
+
+.folder-nav-links a {
+  color: #3b3b3b;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 15px;
+  transition: color 0.15s ease;
+}
+
+.folder-nav-links a:hover {
+  color: #386adf;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .nav-links {
@@ -900,7 +960,7 @@ section {
   }
 
   .home-icon {
-    font-size: 3.5vw;
+    font-size: 5vw;
     margin-right: 1.5vw;
   }
 
@@ -1840,8 +1900,10 @@ section {
   transition: transform 0.2s ease;
 }
 
-.polaroid-sym-tr:hover { transform: rotate(8deg)  translateY(-6px); }
-.polaroid-sym-bl:hover { transform: rotate(-8deg) translateY(-6px); }
+.polaroid-sym-tr { transform: rotate(8deg)  translateY(var(--py, 0px)); }
+.polaroid-sym-bl { transform: rotate(-8deg) translateY(var(--py, 0px)); }
+.polaroid-sym-tr:hover { transform: rotate(8deg)  translateY(calc(var(--py,0px) - 6px)); }
+.polaroid-sym-bl:hover { transform: rotate(-8deg) translateY(calc(var(--py,0px) - 6px)); }
 
 /* <> top-right — half on, half off the polaroid */
 .polaroid-sym-tr {
@@ -1849,7 +1911,6 @@ section {
   right: -32px;
   font-size: 58px;
   opacity: 1;
-  transform: rotate(8deg);
   color: #b5d1fa;
   letter-spacing: -3px;
 }
@@ -1861,7 +1922,6 @@ section {
   left: auto;
   font-size: 56px;
   opacity: 1;
-  transform: rotate(-8deg);
   color: #cdd7f8;
 }
 
@@ -1897,8 +1957,8 @@ section {
 /* & — top left, slight counter-clockwise tilt */
 .hero-sym-amp {
   font-size: 80px;
-  top: 4%;
-  left: -20px;
+  top: 1%;
+  left: -30px;
   opacity: 1;
   transform: rotate(-6deg) translateY(var(--py, 0px));
   color: #dfdff2;

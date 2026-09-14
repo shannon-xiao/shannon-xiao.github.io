@@ -10,6 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* transparent navbar for about page */
+    .navbar {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
     /* ── 25/75 asymmetric layout for below-hero sections ── */
     .about-asymmetric-grid {
       display: grid;
@@ -117,21 +124,20 @@
 </head>
 <body>
 
+
 <div class="navbar">
   <a href="index.html" class="logo">shannon-xiao</a>
   <div class="nav-links">
     <a href="index.html" class="home-icon">🧾</a>
-    <a href="about.html" class="active">about,</a>
-    <a href="folio.html">folio,</a>
-    <div class="dropdown">
-      <a href="projects.html" class="dropdown-toggle">work,</a>
-      <div class="dropdown-menu">
-        <a href="projects.html#client">client</a>
-        <a href="projects.html#research">research</a>
-        <a href="projects.html#other">other</a>
+    <div class="folder-nav" id="folder-nav">
+      <button class="folder-nav-btn" id="folder-nav-btn" aria-expanded="false" aria-label="Toggle menu">📁</button>
+      <div class="folder-nav-links" id="folder-nav-links" aria-hidden="true">
+        <a href="about.html">about,</a>
+        <a href="folio.html">folio,</a>
+        <a href="projects.html">work,</a>
+        <a href="contact.html">contact.</a>
       </div>
     </div>
-    <a href="contact.html">contact.</a>
   </div>
 </div>
 
@@ -142,7 +148,8 @@
        1. Add banner image file (landscape, at least 1800px wide recommended)
        2. Change background-image in the inline style to: url('your-banner-filename.jpg')
        3. Remove or keep the overlay div as desired -->
-  <div class="about-banner" style="background-image: url('kamakura-banner.jpg');">
+  <div class="about-banner" id="shader-banner">
+    <canvas id="gradient-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;display:block;"></canvas>
     <div class="banner-overlay-text"><span class="hover-word">student.</span> <span class="hover-word">creator.</span> <span class="hover-word">explorer.</span></div>
     <button class="banner-scroll-btn" aria-label="Scroll to about section">&#8964;</button>
   </div>
@@ -182,7 +189,7 @@
           <p class="about-tagline">data science + analytics · bay area · co'29</p>
           <div class="about-intro-text">
             <p>Hi! My name is Shannon, an undergrad student at UC Berkeley interested in topics relevant to consumer products, technology, and finance.</p>
-            <p>Growing up, I worked a part time job in the food &amp; beverage industry, which naturally led me to become interested in how products can be designed to provide usage and benefit. This job has also given rise to my interest in other areas of study, such as business operations, finance, and data analysis.</p>
+            <p>Growing up, I worked a part time job in the food &amp; beverage industry, which deepened my appreciation for how consumer and business products are designed to deliver value and meet everyday needs. This job has also given rise to my interest in other areas of study, such as business operations, finance, and data analysis.</p>
             <p>In my free time, I enjoy exploring creative activities including illustration, music, and photography.</p>
           </div>
         </div>
@@ -429,23 +436,111 @@
     requestAnimationFrame(tick);
   })();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script>
+/* Animated shader gradient banner — kamakura palette */
+(function () {
+  var canvas = document.getElementById('gradient-canvas');
+  var banner = document.getElementById('shader-banner');
+  if (!canvas || !banner || typeof THREE === 'undefined') return;
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false });
+  renderer.setPixelRatio(1);
+
+  var scene  = new THREE.Scene();
+  var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  var mat = new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0.0 } },
+    vertexShader: [
+      'varying vec2 vUv;',
+      'void main(){ vUv = uv; gl_Position = vec4(position,1.0); }'
+    ].join(''),
+    fragmentShader: [
+      'precision mediump float;',
+      'uniform float uTime;',
+      'varying vec2 vUv;',
+
+      /* gentle warp — low intensity so shapes stay broad, not oval */
+      'vec2 warp(vec2 p, float t){',
+      '  float wx = sin(p.y*1.2 + t*0.5)*0.18 + cos(p.x*0.9 - t*0.4)*0.14;',
+      '  float wy = cos(p.x*1.1 - t*0.45)*0.18 + sin(p.y*1.4 + t*0.35)*0.12;',
+      '  return p + vec2(wx,wy);',
+      '}',
+
+      'void main(){',
+      '  float t  = uTime * 0.22;',
+      '  vec2 wp  = warp(vUv, t);',
+
+      /* diagonal waves at mid-range frequency — enough variation, not oval */
+      '  float w1 = sin(wp.x*2.2 + wp.y*1.0  + t*0.6)  * 0.5 + 0.5;',
+      '  float w2 = sin(wp.x*0.8 - wp.y*2.4  - t*0.5)  * 0.5 + 0.5;',
+      '  float w3 = sin(wp.x*1.7 + wp.y*1.9  + t*0.75) * 0.5 + 0.5;',
+      '  float w4 = sin(wp.x*1.3 - wp.y*0.7  + t*0.4)  * 0.5 + 0.5;',
+      '  float n  = w1*0.30 + w2*0.28 + w3*0.24 + w4*0.18;',
+
+      /* 4-stop pastel palette — contrast via lightness spread */
+      '  vec3 cDeep  = vec3(0.494,0.518,0.745);', /* #7e84be muted indigo  */
+      '  vec3 cOcean = vec3(0.600,0.745,0.878);', /* #99bee0 pastel blue   */
+      '  vec3 cLav   = vec3(0.780,0.710,0.922);', /* #c7b5eb pastel lav    */
+      '  vec3 cMist  = vec3(0.945,0.933,0.980);', /* #f1eefb near white    */
+
+      '  vec3 col;',
+      '  if      (n < 0.33) col = mix(cDeep,  cOcean, smoothstep(0.00,0.33,n));',
+      '  else if (n < 0.66) col = mix(cOcean, cLav,   smoothstep(0.33,0.66,n));',
+      '  else                col = mix(cLav,   cMist,  smoothstep(0.66,1.00,n));',
+
+      '  gl_FragColor = vec4(col, 1.0);',
+      '}'
+    ].join('\n')
+  });
+
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+
+  function resize() {
+    renderer.setSize(banner.offsetWidth, banner.offsetHeight, false);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var clock = new THREE.Clock();
+  (function loop() {
+    mat.uniforms.uTime.value = clock.getElapsedTime();
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
 <script src="script.js"></script>
 <script>
-/* Symbol scroll parallax — symbols drift at different speeds as page scrolls */
+/* Symbol scroll parallax — each symbol capped so it never exits its container */
 (function () {
+  var container = document.querySelector('.hero-left-symbols');
   var items = [
-    { el: document.querySelector('.hero-sym-amp'),  speed: 0.12 },
-    { el: document.querySelector('.hero-sym-hash'), speed: 0.07 },
-    { el: document.querySelector('.hero-sym-at'),   speed: 0.16 }
+    { el: document.querySelector('.hero-sym-amp'),  speed: 0.12, bounded: true  },
+    { el: document.querySelector('.hero-sym-hash'), speed: 0.07, bounded: true  },
+    { el: document.querySelector('.hero-sym-at'),   speed: 0.16, bounded: true  },
+    { el: document.querySelector('.polaroid-sym-tr'), speed: 0.09, bounded: false },
+    { el: document.querySelector('.polaroid-sym-bl'), speed: 0.06, bounded: false }
   ].filter(function (d) { return d.el; });
 
-  if (!items.length) return;
+  if (!items.length || !container) return;
+
+  /* Max --py for symbols inside .hero-left-symbols so they don't exit */
+  function computeMax(el) {
+    var cH  = container.offsetHeight;
+    var eH  = el.offsetHeight;
+    var top = el.offsetTop;
+    return Math.max(0, cH - (top + eH) - 8);
+  }
 
   window.addEventListener('scroll', function () {
     var scrollY = window.scrollY;
     items.forEach(function (d) {
-      d.el.style.setProperty('--py', (scrollY * d.speed) + 'px');
+      var py = scrollY * d.speed;
+      if (d.bounded) py = Math.min(py, computeMax(d.el));
+      d.el.style.setProperty('--py', py + 'px');
     });
   }, { passive: true });
 })();

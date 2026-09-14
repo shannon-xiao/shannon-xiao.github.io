@@ -1,23 +1,35 @@
 // Cursor trail — receipt-style characters that follow the mouse
+window.cursorWild = false;
+
 (function () {
-  const CHARS = ['·', '·', '·', '·', '*', '─', '+', '|'];
-  const MAX_ALPHA = 110;
-  const LIFETIME = 55;
-  // blues + lavenders pulled from site palette
+  const CHARS      = ['·', '·', '·', '·', '*', '─', '+', '|'];
+  const WILD_CHARS = ['!', '#', '$', '%', '&', '@', '~', '*', '?', '+', '=', '<', '>'];
+  const MAX_ALPHA  = 110;
+  const LIFETIME   = 55;
   const COLORS = [
-    [56,  106, 223],  // #386adf — bright blue
-    [34,   71, 138],  // #22478a — navy
-    [122, 159, 212],  // #7a9fd4 — periwinkle
-    [155, 180, 217],  // light periwinkle
-    [160, 148, 210],  // lavender
-    [130, 120, 200],  // muted violet-lavender
-    [56,  106, 223],  // weight bright blue a bit more
-    [122, 159, 212],  // weight periwinkle a bit more
+    [56,  106, 223],
+    [34,   71, 138],
+    [122, 159, 212],
+    [155, 180, 217],
+    [160, 148, 210],
+    [130, 120, 200],
+    [56,  106, 223],
+    [122, 159, 212],
+  ];
+  const WILD_COLORS = [
+    [255,  80,  80],
+    [255, 160,  30],
+    [255, 210,  50],
+    [60,  200, 100],
+    [80,  180, 255],
+    [200,  80, 255],
+    [255,  80, 180],
+    [255, 255, 255],
   ];
 
   const sketch = (p) => {
     let particles = [];
-    let ringX, ringY; // lagging ring position
+    let ringX, ringY;
 
     p.setup = () => {
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -34,7 +46,6 @@
       ringY = p.windowHeight / 2;
     };
 
-    // Rounded 4-point star using Catmull-Rom spline
     function drawStar4(x, y, outer, inner) {
       const verts = [];
       for (let i = 0; i < 8; i++) {
@@ -45,60 +56,63 @@
       const n = verts.length;
       p.curveTightness(0);
       p.beginShape();
-      // Wrap last + first two vertices so Catmull-Rom closes smoothly
       p.curveVertex(verts[n - 1][0], verts[n - 1][1]);
-      for (let i = 0; i < n; i++) {
-        p.curveVertex(verts[i][0], verts[i][1]);
-      }
+      for (let i = 0; i < n; i++) p.curveVertex(verts[i][0], verts[i][1]);
       p.curveVertex(verts[0][0], verts[0][1]);
       p.curveVertex(verts[1][0], verts[1][1]);
       p.endShape();
     }
 
-    p.windowResized = () => {
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
-    };
+    p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight);
 
     p.mouseMoved = () => {
-      if (p.frameCount % 3 === 0) {
-        particles.push({
-          x: p.mouseX,
-          y: p.mouseY,
-          char: CHARS[Math.floor(Math.random() * CHARS.length)],
-          color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          life: LIFETIME,
-          dx: p.random(-0.3, 0.3),
-          dy: p.random(-0.8, -0.2),
-        });
+      const wild = window.cursorWild;
+      if (p.frameCount % (wild ? 1 : 3) === 0) {
+        const count  = wild ? 4 : 1;
+        const chars  = wild ? WILD_CHARS : CHARS;
+        const colors = wild ? WILD_COLORS : COLORS;
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x:    p.mouseX + (wild ? p.random(-10, 10) : 0),
+            y:    p.mouseY + (wild ? p.random(-10, 10) : 0),
+            char: chars[Math.floor(Math.random() * chars.length)],
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: wild ? LIFETIME * 1.4 : LIFETIME,
+            size: wild ? p.random(16, 28) : 13,
+            dx:   wild ? p.random(-3, 3)  : p.random(-0.3, 0.3),
+            dy:   wild ? p.random(-4, 4)  : p.random(-0.8, -0.2),
+          });
+        }
       }
     };
 
     p.draw = () => {
       p.clear();
-
-      // Trailing star cursor
+      const wild = window.cursorWild;
       const cx = p.mouseX, cy = p.mouseY;
-      const dt = Math.min(p.deltaTime / 16.67, 3); // normalise to 60fps
-      const LERP = 1 - Math.pow(0.88, dt);         // frame-rate independent easing
+      const dt   = Math.min(p.deltaTime / 16.67, 3);
+      const LERP = 1 - Math.pow(0.88, dt);
       ringX += (cx - ringX) * LERP;
       ringY += (cy - ringY) * LERP;
 
-      // Outer 4-point star — lags behind
+      const starCol = wild
+        ? WILD_COLORS[Math.floor(p.frameCount / 3) % WILD_COLORS.length]
+        : [34, 71, 138];
       p.noFill();
-      p.stroke(34, 71, 138, 170);
-      p.strokeWeight(1.2);
-      drawStar4(ringX, ringY, 17, 7);
+      p.stroke(starCol[0], starCol[1], starCol[2], 200);
+      p.strokeWeight(wild ? 2 : 1.2);
+      drawStar4(ringX, ringY, wild ? 28 : 17, wild ? 11 : 7);
 
-      // Inner dot — snaps to cursor
       p.noStroke();
-      p.fill(34, 71, 138, 230);
-      p.ellipse(cx, cy, 5, 5);
+      p.fill(starCol[0], starCol[1], starCol[2], 230);
+      p.ellipse(cx, cy, wild ? 8 : 5, wild ? 8 : 5);
 
-      // Particle trail
       p.noStroke();
       for (let i = particles.length - 1; i >= 0; i--) {
-        const pt = particles[i];
-        const alpha = (pt.life / LIFETIME) * MAX_ALPHA;
+        const pt    = particles[i];
+        const maxL  = wild ? LIFETIME * 1.4 : LIFETIME;
+        const alpha = (pt.life / maxL) * MAX_ALPHA;
+        p.textSize(pt.size || 13);
         p.fill(pt.color[0], pt.color[1], pt.color[2], alpha);
         p.text(pt.char, pt.x, pt.y);
         pt.x += pt.dx;
@@ -106,11 +120,63 @@
         pt.life--;
         if (pt.life <= 0) particles.splice(i, 1);
       }
+      p.textSize(13);
     };
   };
 
   new p5(sketch);
 })();
+
+// Easter egg — 3 rapid clicks on 🧾 triggers wild trail + "you found it!"
+// Uses sessionStorage so the count survives page navigations
+window.addEventListener('DOMContentLoaded', function () {
+  var icon = document.querySelector('.home-icon');
+  if (!icon) return;
+
+  // On page load check if we're mid-sequence
+  var now = Date.now();
+  var count = parseInt(sessionStorage.getItem('receiptClicks') || '0', 10);
+  var last  = parseInt(sessionStorage.getItem('receiptLastClick') || '0', 10);
+  if (now - last > 800) { count = 0; sessionStorage.setItem('receiptClicks', '0'); }
+  if (count >= 3) { sessionStorage.setItem('receiptClicks', '0'); triggerEasterEgg(); }
+
+  icon.addEventListener('click', function (e) {
+    e.preventDefault();
+    var ts    = Date.now();
+    var prev  = parseInt(sessionStorage.getItem('receiptLastClick') || '0', 10);
+    var c     = parseInt(sessionStorage.getItem('receiptClicks') || '0', 10);
+    if (ts - prev > 800) c = 0;
+    c++;
+    sessionStorage.setItem('receiptClicks', c);
+    sessionStorage.setItem('receiptLastClick', ts);
+
+    if (c >= 3) {
+      sessionStorage.setItem('receiptClicks', '0');
+      triggerEasterEgg();
+    } else {
+      var page = window.location.pathname.split('/').pop();
+      if (page !== 'index.html' && page !== '' && page !== '/') {
+        window.location.href = 'index.html';
+      }
+    }
+  });
+
+  function triggerEasterEgg() {
+    window.cursorWild = true;
+    var toast = document.createElement('div');
+    toast.textContent = 'you found it! 🎉';
+    toast.style.cssText = 'position:fixed;bottom:32px;left:50%;transform:translateX(-50%);' +
+      'background:#386adf;color:#fff;font-family:monospace;font-size:13px;' +
+      'padding:8px 18px;border-radius:20px;z-index:99999;pointer-events:none;' +
+      'opacity:1;transition:opacity 0.5s ease;';
+    document.body.appendChild(toast);
+    setTimeout(function () {
+      window.cursorWild = false;
+      toast.style.opacity = '0';
+      setTimeout(function () { toast.remove(); }, 500);
+    }, 3000);
+  }
+});
 
 // Smooth scroll to section on page load if hash exists
 window.addEventListener('DOMContentLoaded', () => {
@@ -131,23 +197,22 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  // Make navbar fixed on receipt pages (index + contact)
   const currentPage = window.location.pathname.split('/').pop();
   const navbar = document.querySelector('.navbar');
   const hero = document.querySelector('.hero');
 
-  // If on index.html, root, or contact.html — fix navbar and pad hero
+  // Pad hero on receipt pages so content clears the fixed navbar
   if (
     currentPage === 'index.html' ||
     currentPage === 'contact.html' ||
     currentPage === '' ||
     currentPage === '/'
   ) {
-    navbar.style.position = 'fixed';
     if (hero) {
       hero.style.paddingTop = '120px';
     }
   }
+
 
   // Fade in projects page content on load
   if (currentPage === 'projects.html') {
@@ -200,3 +265,27 @@ function initReceiptPrint(imageId) {
     img.addEventListener('load', startPrint);
   }
 }
+
+// Folder nav — persists open/closed state across pages via localStorage
+(function () {
+  var btn   = document.getElementById('folder-nav-btn');
+  var links = document.getElementById('folder-nav-links');
+  if (!btn || !links) return;
+
+  var open = localStorage.getItem('folderNavOpen') === 'true';
+
+  function applyState() {
+    btn.textContent = open ? '📂' : '📁';
+    btn.setAttribute('aria-expanded', open);
+    links.classList.toggle('open', open);
+    links.setAttribute('aria-hidden', !open);
+  }
+
+  applyState();
+
+  btn.addEventListener('click', function () {
+    open = !open;
+    localStorage.setItem('folderNavOpen', open);
+    applyState();
+  });
+}());
