@@ -266,6 +266,29 @@ function initReceiptPrint(imageId) {
   }
 }
 
+// Page transitions — fade out before navigating, CSS handles fade in
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.style.transition = 'opacity 0.25s ease';
+
+    document.querySelectorAll('a').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      if (link.classList.contains('home-icon')) return; // handled by easter egg
+      if (link.target === '_blank') return;
+      if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) return;
+
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.body.style.opacity = '0';
+        setTimeout(function () {
+          window.location.href = href;
+        }, 260);
+      });
+    });
+  });
+}());
+
 // Folder nav — persists open/closed state across pages via localStorage
 (function () {
   var btn   = document.getElementById('folder-nav-btn');

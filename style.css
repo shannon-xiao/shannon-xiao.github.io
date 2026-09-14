@@ -5,12 +5,18 @@ body {
   background: #FFFFFF;
   overflow-x: hidden; /* Prevent horizontal scroll from full-width sections */
   overflow-y: auto; /* Allow vertical scroll */
+  opacity: 0;
+  animation: pageFadeIn 0.7s ease 0.05s forwards;
 
   /* Firefox */
   scrollbar-width: none;
 
   /* IE 10+ / Edge */
   -ms-overflow-style: none;
+}
+
+@keyframes pageFadeIn {
+  to { opacity: 1; }
 }
 
 /* Chrome, Safari, Opera */
